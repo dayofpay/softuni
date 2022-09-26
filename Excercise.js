@@ -7,7 +7,6 @@ function getValues(){
     }
     getBookData(["In Search of Lost Time","Ulysses","Don Quixote","The Great Gatsby","Moby Dick"]);
     function getBookData(inputData){
-        let getAuthorPos = values.authors.indexOf(values.finalResult);
         for(let startPoint = 0; startPoint <= inputData.length; startPoint++){
             if(inputData[startPoint] != values.finalResult){
                 values.totalTries++;
