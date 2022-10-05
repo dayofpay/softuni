@@ -1,154 +1,39 @@
-function start(input){
-    let month = input.shift();
-    let noshtuvki = parseInt(input.shift());
-    let studioPrice;
-    let apartmentPrice;
-    let finalPriceStudio;
-    let finalPriceApartment;
-    if(noshtuvki <= 14 && month == "May" || month == "October"){
-        studioPrice = 50 * noshtuvki;
-        apartmentPrice = 65 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki <= 14 && month == "May" || month == "October"){
-        studioPrice = 50 * noshtuvki;
-        apartmentPrice = 65 * noshtuvki;
-        finalPriceStudio = studioPrice - (studioPrice / 100 * 10);
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${finalPriceStudio.toFixed(2)} lv.`);
-    }
-    if(noshtuvki <= 14 && month == "June" || month == "September"){
-        studioPrice = 75.20 * noshtuvki;
-        apartmentPrice = 68.70 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 14 && month == "June" || month == "September"){
-        console.log("asd");
-        finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-        console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    if(noshtuvki <= 14 && month == "July" || month == "August"){
-        studioPrice = 76 * noshtuvki;
-        apartmentPrice = 77 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 14){
-        if(month == "May"){
-            studioPrice = 50 * noshtuvki;
-            apartmentPrice = 65 * noshtuvki;
-            finalPriceStudio = studioPrice - (studioPrice / 100 * 30);
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${finalPriceStudio.toFixed(2)} lv.`);
+function start(input) {
+    let month = input[0];
+    let nights = Number(input[1]);
+    let studioPrice = 0;
+    let apartmentPrice = 0;
+    if (month === "May" || month === "October") {
+        if (nights > 7 && nights <= 14) {
+            studioPrice = (nights * 50) * 0.95;
+            apartmentPrice = nights * 65;
+        } else if (nights > 14) {
+            studioPrice = (nights * 50) * 0.7;
+            apartmentPrice = (nights * 65) * 0.9;
+        } else {
+            studioPrice = nights * 50;
+            apartmentPrice = nights * 65;
         }
-        if(month == "October"){
-            studioPrice = 50 * noshtuvki;
-            apartmentPrice = 65 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
+ 
+    } else if (month === "June" || month === "September") {
+        if (nights > 14) {
+            studioPrice = (nights * 75.2) * 0.8;
+            apartmentPrice = (nights * 68.7) * 0.9;
+        } else {
+            studioPrice = nights * 75.2;
+            apartmentPrice = nights * 68.7;
         }
-        if(month == "June"){
-            studioPrice = 75.20 * noshtuvki;
-            apartmentPrice = 68.70 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "July"){
-            studioPrice = 76 * noshtuvki;
-            apartmentPrice = 77 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "August"){
-            studioPrice = 76 * noshtuvki;
-            apartmentPrice = 77 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "September"){
-            studioPrice = 75.20 * noshtuvki;
-            apartmentPrice = 68.70 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
+    } else if (month === "July" || month === "August") {
+        if (nights > 14) {
+            studioPrice = nights * 76;
+            apartmentPrice = (nights * 77) * 0.9;
+        } else {
+            studioPrice = nights * 76;
+            apartmentPrice = nights * 77;
         }
     }
+ 
+    console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.`);
+    console.log(`Studio: ${studioPrice.toFixed(2)} lv.`)
 }
-// РЕШЕНИЕ 2
-
-function start(input){
-    let month = input.shift();
-    let noshtuvki = parseInt(input.shift());
-    let studioPrice;
-    let apartmentPrice;
-    let finalPriceStudio;
-    let finalPriceApartment;
-    if(noshtuvki <= 14 && month == "May" || month == "October"){
-        studioPrice = 50 * noshtuvki;
-        apartmentPrice = 65 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 7 && noshtuvki < 14 && month == "May" || month == "October"){
-        studioPrice = 50 * noshtuvki;
-        apartmentPrice = 65 * noshtuvki;
-        finalPriceStudio = studioPrice - (studioPrice / 100 * 0.05);
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${finalPriceStudio.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 7  && noshtuvki < 14 && month == "May" || month == "October"){
-        studioPrice = 50 * noshtuvki;
-        apartmentPrice = 65 * noshtuvki;
-        finalPriceStudio = studioPrice - (studioPrice / 100 * 30);
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${finalPriceStudio.toFixed(2)} lv.`);
-    }
-    if(noshtuvki <= 14 && month == "June" || month == "September"){
-        studioPrice = 75.20 * noshtuvki;
-        apartmentPrice = 68.70 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 14 && month == "June" || month == "September"){
-        console.log("asd");
-        finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 20);
-        console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    if(noshtuvki <= 14 && month == "August" || month == "July"){
-        studioPrice = 76 * noshtuvki;
-        apartmentPrice = 77 * noshtuvki;
-        console.log(`Apartment: ${apartmentPrice.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-    }
-    else if(noshtuvki > 14){
-        if(month == "May"){
-            studioPrice = 50 * noshtuvki;
-            apartmentPrice = 65 * noshtuvki;
-            finalPriceStudio = studioPrice - (studioPrice / 100 * 30);
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${finalPriceStudio.toFixed(2)} lv.`);
-        }
-        if(month == "October"){
-            studioPrice = 50 * noshtuvki;
-            apartmentPrice = 65 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "June"){
-            studioPrice = 75.20 * noshtuvki;
-            apartmentPrice = 68.70 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "July"){
-            studioPrice = 76 * noshtuvki;
-            apartmentPrice = 77 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "August"){
-            studioPrice = 76 * noshtuvki;
-            apartmentPrice = 77 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-        if(month == "September"){
-            studioPrice = 75.20 * noshtuvki;
-            apartmentPrice = 68.70 * noshtuvki;
-            finalPriceApartment = apartmentPrice - (apartmentPrice / 100 * 10);
-            console.log(`Apartment: ${finalPriceApartment.toFixed(2)} lv.\r\nStudio: ${studioPrice.toFixed(2)} lv.`);
-        }
-    }
-}
+start(["May","15"]);
