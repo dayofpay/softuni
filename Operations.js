@@ -1,54 +1,40 @@
 function start(input){
-    let n1 = Number(input.shift());
-    let n2 = Number(input.shift());
-    let operator = input.shift();
-    let result;
-    let type;
+    let n1 = Number(input[0]);
+    let n2 = Number(input[1]);
+    let operator = input[2];
+    let result = 0;
         switch(operator){
-            
             case "*":
-                if(n1 * n2 % 2 == 0){
-                    result = n1 * n2;
-                    type = "even";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
-                    break;
+                result = n1 * n2;
+                if(result % 2 == 0){
+                    console.log(`${n1} ${operator} ${n2} = ${result} - even`);
                 }else{
-                    result = n1 * n2;
-                    type = "odd";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
-                    break;
+                    console.log(`${n1} ${operator} ${n2} = ${result} - odd`);
                 }
-            case "+":
-                if(n1 + n2 % 2 == 0){
+                break;
+            case "+":   
                     result = n1 + n2;
-                    type = "odd";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
+                    if(result % 2 == 0){
+                        console.log(`${n1} ${operator} ${n2} = ${result} - even`);
+                    }else{
+                        console.log(`${n1} ${operator} ${n2} = ${result} - odd`);
+                    }
                     break;
-                }else{
-                    result = n1 + n2;
-                    type = "even";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
-                    break;
-                }
             case "-":
-                if(n1 - n2 % 2 == 0){
                     result = n1 - n2;
-                    type = "even";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
+                    if(result % 2 == 0){
+                        console.log(`${n1} ${operator} ${n2} = ${result} - even`);
+                    }else{
+                        console.log(`${n1} ${operator} ${n2} = ${result} - odd`);
+                    }
                     break;
-                }else{
-                    result = n1 - n2;
-                    type = "odd";
-                    console.log(`${n1} ${operator} ${n2} = ${result} - ${type}`)
-                    break;
-                }
             case "/":
                     if(n2 == 0){
                         console.log(`Cannot divide ${n1} by zero`);
                         break;
                     }else{
                         result = n1 / n2;
-                        console.log(`${n1} / ${n2} = ${result}`)
+                        console.log(`${n1} ${operator} ${n2} = ${result.toFixed(2)}`);
                         break;
                     } 
             case "%":
@@ -57,11 +43,10 @@ function start(input){
                         break;
                     }else{
                         result = n1 % n2;
-                        console.log(`${n1} % ${n2} = ${result}`)
+                        console.log(`${n1} ${operator} ${n2} = ${result}`);
                         break;
                     }
+                default:     
         }
     }
-start((["7",
-"3",
-"*"]))
+    start(["1","2","%"])
