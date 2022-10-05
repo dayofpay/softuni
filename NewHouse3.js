@@ -1,8 +1,8 @@
 function start(input){
-    let flowerType = input.shift();
-    let flowerQuantity = Number(input.shift());
-    let budget = Number(input.shift()); 
-    let totalCost;
+    let flowerType = input[0];
+    let flowerQuantity = Number(input[1]);
+    let budget = Number(input[2]); 
+    let totalCost = 0;
     let rosePrice = flowerQuantity * 5;
     let dahilasPrice = flowerQuantity * 3.80;
     let tulipsPrice = flowerQuantity * 2.80;
@@ -10,7 +10,7 @@ function start(input){
     let gladioulusPrice = flowerQuantity * 2.50;
     if(flowerType == "Roses"){
         if(flowerQuantity > 80){
-            totalCost = rosePrice;
+            totalCost = rosePrice - (rosePrice * 0.10);
         }else{
             totalCost = rosePrice;
         }
@@ -52,4 +52,3 @@ function start(input){
         console.log(`Hey, you have a great garden with ${flowerQuantity} ${flowerType} and ${remain.toFixed(2)} leva left.`);
     }
 }
-start(["Roses","55","250"]);
