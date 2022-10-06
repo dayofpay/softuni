@@ -29,7 +29,7 @@ function generateInvoice(products){
         function getProducts(){
             const getFormatedData = data.char.join('');
             console.log(getFormatedData);
-            for(let setStart = 0; setStart<= data.products.length-1;setStart++){
+            for(let setStart = 0; setStart <= data.products.length-1;setStart++){
                 console.log(`${data.products[setStart]} - ${data.prices[setStart]} ЛВ`);
             }
         getTotalPrice();
