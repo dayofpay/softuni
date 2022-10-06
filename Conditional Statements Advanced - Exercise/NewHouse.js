@@ -3,7 +3,6 @@ function start(input){
     let flowerQuantity = Number(input.shift());
     let budget = Number(input.shift());
     let totalSum;
-    let discountSum;
     if(flower == "Roses"){
         totalSum = flowerQuantity * 5;
         if(totalSum <= budget && flowerQuantity <80){

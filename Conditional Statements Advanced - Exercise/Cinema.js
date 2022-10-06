@@ -14,4 +14,3 @@ function implement(input){
     }
     console.log(`${income.toFixed(2)} leva`);
 }
-implement(["Normal","21","13"]);

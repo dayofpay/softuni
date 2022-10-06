@@ -13,4 +13,4 @@ function Calculate(carPrice,mySalary,duration){
         console.log("След заплащането ще ви остават " + endMonth + "лв от заделените средства");
     }
 }
-Calculate(150000,2500,12);
+Calculate(55000,4000,24);
