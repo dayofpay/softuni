@@ -3,7 +3,6 @@ function start(input){
 
     let movie = input[movieIndex]; // Taxi
     movieIndex++; // 10
-
     let studentTicketsCount =0;
     let standardTicketCount = 0;
     let kidTicketsCount = 0;
