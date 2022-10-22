@@ -17,7 +17,7 @@ function start(input){
     let totalTime = totalDistance + addTime;
 
 
-    if(record <= totalTime){c
+    if(record <= totalTime){
         console.log(`No, he failed! He was ${(totalTime - record).toFixed(2)} seconds slower.`);
     }
     else{
