@@ -1,30 +1,16 @@
 function init(yield) {
     let days = 0;
     let consumedSpices=0;
-    let total = 0;
-    let abandoned = false;
     while (yield >= 100) {
-        if(yield >= 26){
-            consumedSpices+=yield;
-        }
-        else{
-            consumedSpices+=0;
-        }
+        consumedSpices+=(yield-26);
         yield-=10;
         days++;
     }
-    if(yield < 100){
-        abandoned = true;
-    }
-
-
-    if(abandoned){
+    if(yield != consumedSpices){
         consumedSpices-=26;
     }
-    total = consumedSpices - days * 26;
 
     console.log(days);
-    console.log(total);
+    console.log(consumedSpices);
   }
-  
 init(450);
