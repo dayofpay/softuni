@@ -4,7 +4,7 @@ function init(yield) {
     let total = 0;
     let abandoned = false;
     while (yield >= 100) {
-        if(yield > 26){
+        if(yield >= 26){
             consumedSpices+=yield;
         }
         else{
