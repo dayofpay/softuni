@@ -5,7 +5,7 @@ function pyramidResources(base, increment) {
     let lapis = 0;
     let gold = 0;
   
-    while (base > 0) {
+    while (base < 2) {
       height += increment;
       let area = (base*base) * increment;
       stone += area;
@@ -16,7 +16,7 @@ function pyramidResources(base, increment) {
       } else {
         marble += perimeter * increment;
       }
-      base -= 2;
+      base += 2;
     }
     gold += increment;
     console.log(`Stone required: ${Math.ceil(stone)}`);
