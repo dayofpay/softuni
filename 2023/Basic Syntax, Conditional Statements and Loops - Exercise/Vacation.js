@@ -1,5 +1,4 @@
 function init(totalGroup,groupType,dayOfStay){
-    let discountPrice = 0;
     let totalPrice = 0;
     if(groupType === "Students"){
         if(dayOfStay === "Friday"){
@@ -64,12 +63,12 @@ function init(totalGroup,groupType,dayOfStay){
 
     else if(groupType === "Regular"){
         if(Number(totalGroup) >= 10 && Number(totalGroup) <= 20){
-            discountPrice += totalPrice - (totalPrice / 100) * 5;
+            totalPrice -=  (totalPrice / 100) * 5;
         }
     }
 
     // Изчисление
-    let final = (totalPrice - discountPrice).toFixed(2);
+    let final = (totalPrice).toFixed(2);
     console.log(`Total price: ${final}`);
 }
-init(1400,"Business","Saturday");
+init(30,"Students","Sunday");
