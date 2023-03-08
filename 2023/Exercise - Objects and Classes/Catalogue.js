@@ -2,10 +2,20 @@ function start(inputData) {
     let object = {};
     for (let data of inputData) {
         let [item, price] = data.split(" : ");
-        object[item] = price;
+        object[item] = Number(price);
     }
-    for(let x of Object.entries(object)){
-        console.log(x);
+
+    let sortItems = Object.keys(object).sort((a,b)=>a.localeCompare(b));
+    let gChar = "";
+    for(let x of sortItems){
+        let name = x;
+        if(gChar !== name[0]){
+            gChar = name[0];
+            console.log(gChar);
+        }
+        
+        let price = object[x];
+        console.log(`  ${name}: ${price}`);
     }
 }
 
