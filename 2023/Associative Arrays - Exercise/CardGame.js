@@ -1,5 +1,4 @@
 function start(inputData) {
-    debugger
     let players = new Map();
 
     let cardPowerEnum = {
