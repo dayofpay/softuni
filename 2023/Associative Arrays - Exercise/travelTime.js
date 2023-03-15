@@ -20,9 +20,7 @@ function start(inputData) {
     let sortedCountries = [...offers.keys()].sort();
   
     for (let country of sortedCountries) {
-      let sortedTowns = [...offers.get(country).entries()].sort((a, b) =>
-        a[1] === b[1] ? a[0].localeCompare(b[0]) : a[1] - b[1]
-      );
+      let sortedTowns = [...offers.get(country).entries()].sort((a, b) => a[1] === b[1] ? a[0].localeCompare(b[0]) : a[1] - b[1]);
   
       let result = `${country} -> `;
       for (let [town, cost] of sortedTowns) {
