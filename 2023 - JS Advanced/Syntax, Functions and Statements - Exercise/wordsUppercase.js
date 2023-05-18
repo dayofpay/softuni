@@ -1,11 +1,8 @@
-function start(inputData){
-    let words = inputData.split(', ');
-    let result = "";
-    for(let x of words){
-        for(let b of x.split(" ")){
-            result += b.toUpperCase()+", ";
-        }
-    }
+function start(inputData) {
+    let words = inputData.match(/\b\w+\b/g);
+    let uppercasedWords = words.map(word => word.toUpperCase());
+    let result = uppercasedWords.join(', ');
+  
     console.log(result);
-}
-start('Hi, how are you?');
+  }
+  
