@@ -1,5 +1,5 @@
 function start(dataNumbers){
-    let numbers =[];
+    let numbers = [];
     for(let x =0; x < dataNumbers.length; x++){
         if(x % 2 === 0){
 
