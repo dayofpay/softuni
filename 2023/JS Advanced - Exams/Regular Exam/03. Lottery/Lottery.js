@@ -59,3 +59,56 @@ const lottery = {
 
 
 module.exports = lottery;
+
+// Solution
+describe('Lottery', function() {
+  describe('buyLotteryTicket', function() {
+    it('should return the correct message when buying valid tickets', function() {
+      expect(lottery.buyLotteryTicket(2, 3, true)).to.equal('You bought 3 tickets for 6$.');
+    });
+
+    it('should throw an error when buying is set to false', function() {
+      expect(function() {
+        lottery.buyLotteryTicket(5, 1, false);
+      }).to.throw(Error, 'Unable to buy lottery ticket!');
+    });
+
+    it('should throw an error when invalid input is provided', function() {
+      expect(function() {
+        lottery.buyLotteryTicket('5', 1, true);
+      }).to.throw(Error, 'Invalid input!');
+    });
+  });
+
+  describe('checkTicket', function() {
+    it('should return the correct message when the ticket has 3 to 5 winning numbers', function() {
+      expect(lottery.checkTicket([1, 2, 3, 4, 5, 6], [1, 2, 3, 8, 9, 10])).to.equal('Congratulations you win, check your reward!');
+    });
+
+    it('should return the correct message when all 6 numbers are winning numbers', function() {
+      expect(lottery.checkTicket([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6])).to.equal('You win the JACKPOT!!!');
+    });
+
+    it('should throw an error when invalid input is provided', function() {
+      expect(function() {
+        lottery.checkTicket([1, 2, 3, 4], [1, 2, 3, 4, 5, 6]);
+      }).to.throw(Error, 'Invalid input!');
+    });
+  });
+
+  describe('secondChance', function() {
+    it('should return the correct message when the ticketID is included in the secondChanceWinningIDs', function() {
+      expect(lottery.secondChance(123, [123, 456, 789])).to.equal('You win our second chance prize!');
+    });
+
+    it('should return the correct message when the ticketID is not included in the secondChanceWinningIDs', function() {
+      expect(lottery.secondChance(123, [456, 789])).to.equal("Sorry, your ticket didn't win!");
+    });
+
+    it('should throw an error when invalid input is provided', function() {
+      expect(function() {
+        lottery.secondChance('123', [456, 789]);
+      }).to.throw(Error, 'Invalid input!');
+    });
+  });
+});

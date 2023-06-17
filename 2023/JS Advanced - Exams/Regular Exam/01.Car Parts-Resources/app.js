@@ -114,7 +114,7 @@ function solve() {
 
           confirmItem.appendChild(confirmButton);
           confirmItem.appendChild(cancelButton);
-
+ 
           confirmList.appendChild(confirmItem);
 
           infoList.innerHTML = '';
