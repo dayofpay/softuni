@@ -1,6 +1,26 @@
 {
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+        {
+            "args": [
+                "-u",
+                "bdd",
+                "--timeout",
+                "999999",
+                "--colors",
+                // "${workspaceFolder}/2023 - JS Advanced/Unit Testing and Error Handling - Lab/tests"
+                "${file}",
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "name": "Mocha Tests",
+            "program": "${workspaceFolder}/2023 - JS Advanced/Unit Testing and Error Handling - Lab/node_modules/mocha/bin/_mocha",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
             "key": "f5",
             "command": "workbench.action.debug.start",
             "args": {
@@ -8,6 +28,7 @@
             },
             "when": "!inDebugMode"
         },
+        
         {
             "key": "f6",
             "command": "workbench.action.debug.start",
