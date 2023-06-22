@@ -12,7 +12,7 @@
         if (n < 4) {
             return '.'.repeat(n);
         }
-        if (!this.includes(' ')) {
+        if (!this.includes(' ')) { 
             return this.slice(0, n - 3) + '...';
         }
         let truncatedString = this.slice(0, n - 3);
