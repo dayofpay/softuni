@@ -7,6 +7,8 @@ function attachEvents() {
     let globalPosts;
     let getLoadButton = document.getElementById('btnLoadPosts');
     let getPostsSection = document.getElementById('posts');
+
+
     // Add Event Listener to the  load posts button
 
 
@@ -18,7 +20,7 @@ function attachEvents() {
     getPostsButton.addEventListener('click', getEvent);
     async function viewEvent(event) {
         clearData();
-
+        getPostTitle.textContent = "Post Details";
         // Clear All Options
 
         document.getElementById('posts').innerHTML = "";
