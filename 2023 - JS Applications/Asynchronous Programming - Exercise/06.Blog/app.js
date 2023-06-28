@@ -3,7 +3,7 @@ function attachEvents() {
     let posts = `http://localhost:3030/jsonstore/blog/posts`;
 
     let comments = `http://localhost:3030/jsonstore/blog/comments`;
-
+    let getPostTitle = document.getElementById('post-title');
     let globalPosts;
     let getLoadButton = document.getElementById('btnLoadPosts');
     let getPostsSection = document.getElementById('posts');
@@ -52,33 +52,41 @@ function attachEvents() {
     }
     async function getEvent(event) {
         clearData();
+
         let currentPost = document.getElementById('posts').value;
-        // Get Post Body
-
-        let getPostBody = document.getElementById('post-body');
-        getPostBody.textContent = globalPosts[currentPost]["body"];
-
-        // Gest Comments List
-
-        let commentList = document.getElementById('post-comments');
-        // Get ALL Comments
-
-        let allComments = await fetch(comments);
-
-        let allCommentsResponse = await allComments.json();
-        Object.values(allCommentsResponse)
-            .filter(comment => comment.postId === currentPost)
-            .map(comment => {
-                let createComment = document.createElement('li');
-                createComment.id = comment.id;
-                createComment.textContent = comment.text;
-                return createComment;
-            })
-            .forEach(createComment => commentList.appendChild(createComment));
-
-
-
-
+        getPostTitle.textContent = `${globalPosts[currentPost]["title"]} - Loading Content`
+        await new Promise((resolve, reject) => {
+            setTimeout(async () => {
+              try {
+                getPostTitle.textContent = `${globalPosts[document.getElementById('posts').value]["title"]}`
+                let currentPost = document.getElementById('posts').value;
+                // Get Post Body
+                let getPostBody = document.getElementById('post-body');
+                getPostBody.textContent = globalPosts[currentPost].body;
+        
+                // Get Comments List
+                let commentList = document.getElementById('post-comments');
+              
+                // Get All Comments
+                let allComments = await fetch(comments);
+                let allCommentsResponse = await allComments.json();
+              
+                Object.values(allCommentsResponse)
+                  .filter(comment => comment.postId === currentPost)
+                  .map(comment => {
+                    let createComment = document.createElement('li');
+                    createComment.id = comment.id;
+                    createComment.textContent = comment.text;
+                    return createComment;
+                  })
+                  .forEach(createComment => commentList.appendChild(createComment));
+        
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
+            }, 1500);
+        });
     }
 
     function clearData() {
