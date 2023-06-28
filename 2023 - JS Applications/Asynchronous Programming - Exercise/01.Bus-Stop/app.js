@@ -17,7 +17,9 @@ function getInfo() {
             getStopName.textContent = finalData.name;
             for (let bus in finalData.buses) {
               let createElement = document.createElement('li');
+
               createElement.textContent = `Bus ${bus} arrives in ${finalData.buses[bus]} minutes`;
+              
               getBusList.appendChild(createElement);
             }
           })
