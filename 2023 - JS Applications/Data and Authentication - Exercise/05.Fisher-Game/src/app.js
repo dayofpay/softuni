@@ -29,10 +29,15 @@ try {
 
         // hide login and register button ( since we are already logged in :D )
 
-        let getLoginButton = document.getElementById('login')
-        let getRegisterButton = document.getElementById('register');
-        getLoginButton.remove();
-        getRegisterButton.remove();
+        // let getLoginButton = document.getElementById('login')
+        // let getRegisterButton = document.getElementById('register');
+        // getLoginButton.remove();
+        // getRegisterButton.remove();
+
+        document.getElementById('user').style.display = "inline";
+        document.getElementById('guest').style.display = "none";
+
+
         // add event listener to the logout button
 
         let logoutData = document.getElementById('logout');
@@ -327,6 +332,8 @@ async function createCatch(event) {
         renderCatches();;
 }
 async function logoutEvent(event) {
+    document.getElementById('user').style.display = "none";
+    document.getElementById('guest').style.display = "inline";
     try {
 
         let token = sessionStorage.getItem('accessToken');

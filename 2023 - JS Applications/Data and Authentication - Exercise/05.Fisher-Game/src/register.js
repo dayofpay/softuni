@@ -18,7 +18,7 @@
 
     let rePass = document.getElementsByName('rePass')[0].value;
 
-    if (getEmail.includes("@") && getPassword.length > 3 && rePass.length > 3) {
+    if (getEmail && getPassword) {
       if (getPassword === rePass) {
         let url = `http://localhost:3030/users/register`;
 
@@ -39,9 +39,10 @@
 
         sessionStorage.setItem('accessToken', response["accessToken"]);
         sessionStorage.setItem('user_id',response._id);
-        sessionStorage.setItem('auth_user', response["email"].substring(0, response["email"].lastIndexOf('@')));
+        sessionStorage.setItem('auth_user', response["email"]);
         console.log(sessionStorage);
-
+        getNotificationBar.style.color = "green";
+        getNotificationBar.textContent = `${sessionStorage.getItem('auth_user')}, you registered successfully !`
       } else {
         getNotificationBar.style.color = 'red';
         getNotificationBar.textContent = 'Passwords does not match!';
@@ -50,8 +51,5 @@
       getNotificationBar.style.color = 'red';
       getNotificationBar.textContent = 'Invalid username or password, please try again!';
     }
-    console.log(getEmail);
-    console.log(getPassword);
-    console.log(rePass);
-    console.log("failed pass validation");
+
   }

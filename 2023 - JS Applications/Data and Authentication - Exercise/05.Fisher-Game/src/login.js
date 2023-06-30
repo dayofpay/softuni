@@ -39,13 +39,17 @@ async function authUser(event) {
             let response = await loginSettings.json();
             console.log(response);
             sessionStorage.setItem('accessToken', response.accessToken);
-            sessionStorage.setItem('auth_user', response.email.substring(0,response.email.lastIndexOf('@')));
+            sessionStorage.setItem('auth_user', response.email);
             sessionStorage.setItem('auth_email', response.email);
             sessionStorage.setItem('user_id',response._id);
             getNotificationBar.style.color = 'green';
             getNotificationBar.textContent = `Welcome, ${sessionStorage.getItem('auth_user')}!`;
 
-
+            document.getElementsByClassName('email')[0].innerHTML = `
+            Welcome, <span>${sessionStorage.getItem('auth_user')}</span></p>
+            `
+            document.getElementById('user').style.display = "inline";
+            document.getElementById('guest').style.display = "none";
         }
     } catch (error) {
         console.error('Error:', error);
