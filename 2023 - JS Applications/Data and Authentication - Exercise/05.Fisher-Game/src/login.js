@@ -3,11 +3,11 @@ let loginEndpoint = `http://localhost:3030/users/login`;
 
 let getSubmitButton = document.getElementById('loginButton');
 
-getSubmitButton.addEventListener('click',authUser);
+getSubmitButton.addEventListener('click', authUser);
 
 let getNotificationBar = document.getElementsByClassName('notification')[0];
 
-async function authUser(event){
+async function authUser(event) {
     // Remove Access Token
 
     sessionStorage.removeItem('accessToken');
@@ -15,18 +15,18 @@ async function authUser(event){
     let getPassword = document.getElementsByName('password')[0].value;
     event.preventDefault();
     let postData = {
-        email : getUser,
-        password : getPassword
+        email: getUser,
+        password: getPassword
     }
     let loginSettings = await fetch(loginEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(postData),
-      });
-    
-      if (loginSettings.status === 403) {
+    });
+
+    if (loginSettings.status === 403) {
         // Unsuccessful authentiaction
 
         getNotificationBar.style.color = "red";
@@ -34,21 +34,21 @@ async function authUser(event){
         getNotificationBar.textContent = `Wrong username OR password, please try again !`;
 
 
-      }
-      else{
+    } else {
         // Success Auth
         let response = await loginSettings.json();
-        sessionStorage.setItem('accessToken',await response["accessToken"]);
+        sessionStorage.setItem('accessToken', await response["accessToken"]);
 
-        sessionStorage.setItem('auth_user',await response["username"]);
+        sessionStorage.setItem('auth_user', await response["username"]);
 
-        sessionStorage.setItem(`auth_email`,await response["email"]);
+        sessionStorage.setItem(`auth_email`, await response["email"]);
 
         getNotificationBar.style.color = "green";
 
         getNotificationBar.textContent = `Welcome, ${sessionStorage.getItem('auth_user')} !`;
 
-      }
-      console.log(sessionStorage.getItem('accessToken'));
-}
 
+
+    }
+    console.log(sessionStorage.getItem('accessToken'));
+}
