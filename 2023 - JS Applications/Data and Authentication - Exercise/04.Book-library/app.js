@@ -1,194 +1,151 @@
 function solution() {
-    // Api Endpoint
+    // API Endpoint
     const apiEndpoint = "http://localhost:3030/jsonstore/collections/books/";
   
-    // Current Mode [Edit,Create] - Default Create
-    let bookObj;
+    // Current Mode [Edit, Create] - Default Create
+    let selectedBookId = '';
   
     // Get "LOAD ALL BOOKS" button
-    const getLoadBooksBtn = document.getElementById('loadBooks');
+    const loadBooksBtn = document.getElementById('loadBooks');
   
     // Add event listener to the button
-    getLoadBooksBtn.addEventListener('click', loadBookEvent);
+    loadBooksBtn.addEventListener('click', loadBooks);
   
     // Get createBook button
-    const getCreateBookButton = document.getElementById('submitBook');
+    const createBookBtn = document.getElementById('submitBook');
   
     // Add event listener to the submit book button
-    getCreateBookButton.addEventListener('click', createOrUpdateBook);
+    createBookBtn.addEventListener('click', createOrUpdateBook);
   
-    async function loadBookEvent(event) {
-      changeFormText(null);
-  
-      const getTableBody = document.getElementsByTagName('tbody')[0];
-  
-      // Clear table before initialization
-      getTableBody.innerHTML = '';
-  
+    async function loadBooks() {
       try {
-        const sendRequest = await fetch(apiEndpoint);
-  
-        if (!sendRequest.ok) {
-          throw new Error(sendRequest.statusText);
+        const response = await fetch(apiEndpoint);
+        if (!response.ok) {
+          throw new Error(response.statusText);
         }
-  
-        const loadBooksEvent = await sendRequest.json();
-  
-        for (const book in loadBooksEvent) {
-          const createTableItem = document.createElement('tr');
-          createTableItem.innerHTML = `
-            <td>${loadBooksEvent[book].title}</td>
-            <td>${loadBooksEvent[book].author}</td>
-            <td>
-              <button class="editButton">Edit</button>
-              <button class="deleteButton">Delete</button>
-            </td>
-          `;
-  
-          // Add event listener to the buttons
-  
-          // Edit Button
-          const editButton = createTableItem.querySelector('.editButton');
-          editButton.addEventListener('click', () => editBook(book));
-  
-          // Delete Button
-          const deleteButton = createTableItem.querySelector('.deleteButton');
-          deleteButton.addEventListener('click', () => deleteBook(book));
-  
-          getTableBody.appendChild(createTableItem);
-        }
+        const books = await response.json();
+        displayBooks(books);
       } catch (error) {
         console.error('Load Books Error:', error);
       }
     }
   
-    async function deleteBook(bookData) {
-      changeFormText(null);
-      const deleteEndpoint = `${apiEndpoint}${bookData}`;
+    function displayBooks(books) {
+      const tableBody = document.querySelector('tbody');
+      tableBody.innerHTML = '';
   
+      for (const bookId in books) {
+        const book = books[bookId];
+        const row = createTableRow(bookId, book.title, book.author);
+        tableBody.appendChild(row);
+      }
+    }
+  
+    function createTableRow(bookId, title, author) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${title}</td>
+        <td>${author}</td>
+        <td>
+          <button class="editButton">Edit</button>
+          <button class="deleteButton">Delete</button>
+        </td>
+      `;
+  
+      const editButton = row.querySelector('.editButton');
+      editButton.addEventListener('click', () => editBook(bookId, title, author));
+  
+      const deleteButton = row.querySelector('.deleteButton');
+      deleteButton.addEventListener('click', () => deleteBook(bookId));
+  
+      return row;
+    }
+  
+    function editBook(bookId, title, author) {
+      const formTitle = document.getElementById('formTitle');
+      const bookTitleInput = document.getElementsByName('title')[0];
+      const bookAuthorInput = document.getElementsByName('author')[0];
+      const createBookBtn = document.getElementById('submitBook');
+  
+      formTitle.textContent = 'Edit FORM';
+      createBookBtn.textContent = 'Save';
+      bookTitleInput.value = title;
+      bookAuthorInput.value = author;
+      selectedBookId = bookId;
+    }
+  
+    async function deleteBook(bookId) {
       try {
-        const sendRequest = await fetch(deleteEndpoint, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-  
-        if (!sendRequest.ok) {
-          throw new Error(sendRequest.statusText);
+        const deleteEndpoint = apiEndpoint + bookId;
+        const response = await fetch(deleteEndpoint, { method: 'DELETE' });
+        if (!response.ok) {
+          throw new Error(response.statusText);
         }
-  
-        // Reload the books after successful deletion
-        loadBookEvent();
+        loadBooks();
       } catch (error) {
         console.error('Delete Book Error:', error);
       }
     }
   
-    async function editBook(bookData) {
-        const getSubmitButton = document.getElementById('submitBook');
-      
-        const editBookEndpoint = `${apiEndpoint}${bookData}`;
-      
-        try {
-          const sendRequest = await fetch(editBookEndpoint);
-      
-          if (!sendRequest.ok) {
-            throw new Error(sendRequest.statusText);
-          }
-      
-          const book = await sendRequest.json();
-          bookObj = book;
-      
-          // Change Title textarea
-          document.getElementsByName('title')[0].value = book.title;
-      
-          // Change Author Textarea
-          document.getElementsByName('author')[0].value = book.author;
-      
-          // Remove previous event listener from the submit button
-          getSubmitButton.removeEventListener('click', createOrUpdateBook);
-      
-          // Add event listener to the submit button for updating the book
-          getSubmitButton.addEventListener('click', () => createOrUpdateBook(event, bookData)); // Pass the event and bookData
-      
-          changeFormText('edit');
-        } catch (error) {
-          console.error('Edit Book Error:', error);
-        }
-      }
-      
-      
+    async function createOrUpdateBook(event) {
+      event.preventDefault();
   
-      async function createOrUpdateBook(event, bookData) {
-        changeFormText(null);
-        event.preventDefault();
-      
-        // Get book title
-        const getBookTitle = document.getElementsByName('title')[0].value;
-      
-        // Get book author
-        const getBookAuthor = document.getElementsByName('author')[0].value;
-      
-        if (getBookTitle && getBookAuthor) { // Validation
-          const updatedBookData = {
-            author: getBookAuthor,
-            title: getBookTitle
-          };
-      
-          try {
-            let putData;
-      
-            if (bookObj) {
-              // Update existing book
-              const updateBookEndpoint = `${apiEndpoint}${bookData}`;
-
-      
-              putData = await fetch(updateBookEndpoint, {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedBookData),
-              });
-            } else {
-              // Create new book
-              putData = await fetch(apiEndpoint, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedBookData),
-              });
-            }
-      
-            if (!putData.ok) {
-              throw new Error(putData.statusText);
-            }
-      
-            // Clear form inputs after successful update
-            document.getElementsByName('title')[0].value = '';
-            document.getElementsByName('author')[0].value = '';
-      
-            // Reload the books after successful update
-            loadBookEvent();
-          } catch (error) {
-            console.error('Create or Update Book Error:', error);
+      const title = document.getElementsByName('title')[0].value;
+      const author = document.getElementsByName('author')[0].value;
+  
+      if (!title || !author) {
+        return;
+      }
+  
+      const bookData = { title, author };
+  
+      try {
+        if (selectedBookId) {
+          // Update existing book
+          const updateEndpoint = apiEndpoint + selectedBookId;
+          const response = await fetch(updateEndpoint, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookData),
+          });
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+        } else {
+          // Create new book
+          const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookData),
+          });
+          if (!response.ok) {
+            throw new Error(response.statusText);
           }
         }
-      }
-      
-      
-      
   
-      function changeFormText(mode) {
-        const formTitle = document.getElementById('formTitle');
-        const saveButton = document.getElementById('submitBook');
-      
-        formTitle.textContent = mode === 'edit' ? 'Edit FORM' : 'FORM';
-        saveButton.innerText = mode === 'edit' ? 'Save' : 'Submit';
+        resetForm();
+        loadBooks();
+      } catch (error) {
+        console.error('Create or Update Book Error:', error);
       }
-      
+    }
+  
+    function resetForm() {
+      const formTitle = document.getElementById('formTitle');
+      const createBookBtn = document.getElementById('submitBook');
+      const bookTitleInput = document.getElementsByName('title')[0];
+      const bookAuthorInput = document.getElementsByName('author')[0];
+  
+      formTitle.textContent = 'FORM';
+      createBookBtn.textContent = 'Submit';
+      bookTitleInput.value = '';
+      bookAuthorInput.value = '';
+      selectedBookId = '';
+    }
   }
   
   solution();
