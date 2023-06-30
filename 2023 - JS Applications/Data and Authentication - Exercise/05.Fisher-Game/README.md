@@ -1,3 +1,4 @@
+```bash
 Unit Tests for the last release
   E2E tests
     Authentication
@@ -102,3 +103,4 @@ Preventing external call to https://fonts.googleapis.com/css?family=Open+Sans
       +2
 
       at Context.<anonymous> (tests\e2e.test.js:333:35)
+```
