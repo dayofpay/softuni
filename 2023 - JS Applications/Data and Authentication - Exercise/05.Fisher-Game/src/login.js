@@ -6,13 +6,7 @@ let getSubmitButton = document.getElementById('loginButton');
 getSubmitButton.addEventListener('click', authUser);
 
 let getNotificationBar = document.getElementsByClassName('notification')[0];
-if (sessionStorage.getItem('accessToken') !== null) {
-    // Get the current folder (directory) of the URL
-    const currentFolder = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
 
-    // Redirect to a page in the current folder
-    window.location = currentFolder + '/index.html';
-}
 
 // remove logout button
 let logoutButton = document.getElementById('logout');
@@ -43,18 +37,14 @@ async function authUser(event) {
         } else {
             // Successful authentication
             let response = await loginSettings.json();
+            console.log(response);
             sessionStorage.setItem('accessToken', response.accessToken);
-            sessionStorage.setItem('auth_user', response.username);
+            sessionStorage.setItem('auth_user', response.email.substring(0,response.email.lastIndexOf('@')));
             sessionStorage.setItem('auth_email', response.email);
             sessionStorage.setItem('user_id',response._id);
             getNotificationBar.style.color = 'green';
             getNotificationBar.textContent = `Welcome, ${sessionStorage.getItem('auth_user')}!`;
 
-            // Get the current folder (directory) of the URL
-            const currentFolder = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-
-            // Redirect to a page in the current folder
-            window.location = currentFolder + '/index.html';
 
         }
     } catch (error) {

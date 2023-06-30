@@ -1,7 +1,3 @@
-if (sessionStorage.getItem('accessToken') !== null) {
-  console.log(true);
-  window.location = "/";
-} else {
 
   // remove logout button
 
@@ -46,11 +42,6 @@ if (sessionStorage.getItem('accessToken') !== null) {
         sessionStorage.setItem('auth_user', response["email"].substring(0, response["email"].lastIndexOf('@')));
         console.log(sessionStorage);
 
-        // Get the current folder (directory) of the URL
-        const currentFolder = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-
-        // Redirect to a page in the current folder
-        window.location = currentFolder + '/index.html';
       } else {
         getNotificationBar.style.color = 'red';
         getNotificationBar.textContent = 'Passwords does not match!';
@@ -64,4 +55,3 @@ if (sessionStorage.getItem('accessToken') !== null) {
     console.log(rePass);
     console.log("failed pass validation");
   }
-}

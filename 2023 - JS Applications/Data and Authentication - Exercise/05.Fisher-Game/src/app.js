@@ -324,9 +324,7 @@ async function createCatch(event) {
             // Handle error and display appropriate error message
         });
 
-    setTimeout(() => {
-        renderCatches();
-    }, 1000);
+        renderCatches();;
 }
 async function logoutEvent(event) {
     try {
