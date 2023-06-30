@@ -27,13 +27,18 @@ try {
         Welcome, <span>${sessionStorage.getItem('auth_user')}</span></p>
         `;
 
+        // hide login and register button ( since we are already logged in :D )
 
+        let getLoginButton = document.getElementById('login')
+        let getRegisterButton = document.getElementById('register');
+        getLoginButton.remove();
+        getRegisterButton.remove();
         // add event listener to the logout button
 
         let logoutData = document.getElementById('logout');
 
         // add event listener to the logout button
-        logoutData.addEventListener('click',logoutEvent);
+        logoutData.addEventListener('click', logoutEvent);
         // Enable add catch button
         document.getElementsByClassName('add')[0].disabled = false;
         document.getElementsByClassName('add')[0].addEventListener('click', createCatch);
@@ -97,25 +102,45 @@ function renderCatches(catches) {
         catchElement.classList.add('catch');
 
         // Set the catch data
-        if(userAuthenticated){
-            catchElement.innerHTML = `
-            <label>Angler</label>
-            <input type="text" class="angler" value="${catchData.angler}">
-            <label>Weight</label>
-            <input type="text" class="weight" value="${catchData.weight}">
-            <label>Species</label>
-            <input type="text" class="species" value="${catchData.species}">
-            <label>Location</label>
-            <input type="text" class="location" value="${catchData.location}">
-            <label>Bait</label>
-            <input type="text" class="bait" value="${catchData.bait}">
-            <label>Capture Time</label>
-            <input type="number" class="captureTime" value="${catchData.captureTime}">
-            <button class="update" data-id="${catchData._id}">Update</button>
-            <button class="delete" data-id="${catchData._id}">Delete</button>
-        `;
-        }
-        else{
+        if (userAuthenticated) {
+
+            if (catchData._ownerId === sessionStorage.getItem('user_id')) {
+                catchElement.innerHTML = `
+                <label>Angler</label>
+                <input type="text" class="angler" value="${catchData.angler}">
+                <label>Weight</label>
+                <input type="text" class="weight" value="${catchData.weight}">
+                <label>Species</label>
+                <input type="text" class="species" value="${catchData.species}">
+                <label>Location</label>
+                <input type="text" class="location" value="${catchData.location}">
+                <label>Bait</label>
+                <input type="text" class="bait" value="${catchData.bait}">
+                <label>Capture Time</label>
+                <input type="number" class="captureTime" value="${catchData.captureTime}">
+                <button class="update" data-id="${catchData._id}">Update</button>
+                <button class="delete" data-id="${catchData._id}">Delete</button>
+            `;
+            } else {
+                catchElement.innerHTML = `
+                <label>Angler</label>
+                <input type="text" class="angler" value="${catchData.angler}">
+                <label>Weight</label>
+                <input type="text" class="weight" value="${catchData.weight}">
+                <label>Species</label>
+                <input type="text" class="species" value="${catchData.species}">
+                <label>Location</label>
+                <input type="text" class="location" value="${catchData.location}">
+                <label>Bait</label>
+                <input type="text" class="bait" value="${catchData.bait}">
+                <label>Capture Time</label>
+                <input type="number" class="captureTime" value="${catchData.captureTime}">
+                <button class="update" data-id="${catchData._id}" disabled>Update</button>
+                <button class="delete" data-id="${catchData._id}" disabled>Delete</button>
+            `;
+            }
+            console.log(catchData);
+        } else {
             catchElement.innerHTML = `
             <label>Angler</label>
             <input type="text" class="angler" value="${catchData.angler}">
@@ -298,32 +323,35 @@ async function createCatch(event) {
             console.error('Error:', error);
             // Handle error and display appropriate error message
         });
+
+    setTimeout(() => {
+        renderCatches();
+    }, 1000);
 }
 async function logoutEvent(event) {
     try {
 
-      let token = sessionStorage.getItem('accessToken');
-      let response = await fetch(`http://localhost:3030/users/logout`, {
-        method: 'GET',
-        headers: {
-          'X-Authorization': token
+        let token = sessionStorage.getItem('accessToken');
+        let response = await fetch(`http://localhost:3030/users/logout`, {
+            method: 'GET',
+            headers: {
+                'X-Authorization': token
+            }
+        });
+        if (response.status === 204 && !response.headers.has("content-type")) {
+            console.log("Logout successful");
+            // Handle any additional logic or UI updates after successful logout
+        } else {
+            console.log("Logout failed");
+            // Handle logout failure or display an appropriate message
         }
-      });
-      if (response.status === 204 && !response.headers.has("content-type")) {
-        console.log("Logout successful");
-        // Handle any additional logic or UI updates after successful logout
-      } else {
-        console.log("Logout failed");
-        // Handle logout failure or display an appropriate message
-      }
     } catch (error) {
-      console.error("Error:", error);
-      // Handle error and display appropriate error message
+        console.error("Error:", error);
+        // Handle error and display appropriate error message
     }
     sessionStorage.clear();
     navEmail.innerHTML = `
     Welcome, <span>guest</span></p>
     `;
     logoutButton.remove();
-  }
-  
+}

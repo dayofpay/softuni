@@ -46,7 +46,7 @@ async function authUser(event) {
             sessionStorage.setItem('accessToken', response.accessToken);
             sessionStorage.setItem('auth_user', response.username);
             sessionStorage.setItem('auth_email', response.email);
-
+            sessionStorage.setItem('user_id',response._id);
             getNotificationBar.style.color = 'green';
             getNotificationBar.textContent = `Welcome, ${sessionStorage.getItem('auth_user')}!`;
 
