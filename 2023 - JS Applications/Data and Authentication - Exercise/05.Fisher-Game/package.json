@@ -1,11 +1,10 @@
 {
   "name": "02.fishergame",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "src/index.html",
   "scripts": {
     "test": "mocha tests",
-    "start": "http-server -a localhost -p 3003 -P http://localhost:3003/src/? -c-1"
-  },
+    "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1"  },
   "author": "",
   "license": "ISC",
   "dependencies": {

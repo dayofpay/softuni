@@ -300,40 +300,56 @@ async function createCatch(event) {
         captureTime: captureTimeInput.value
     };
 
-    let url = 'http://localhost:3030/data/catches';
-    fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Authorization': sessionStorage.getItem('accessToken')
-            },
-            body: JSON.stringify(newCatch)
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Catch created successfully');
-                // Clear the form fields
-                anglerInput.value = '';
-                weightInput.value = '';
-                speciesInput.value = '';
-                locationInput.value = '';
-                baitInput.value = '';
-                captureTimeInput.value = '';
-            } else {
-                console.log('Failed to create catch');
-                // Handle the error or display an appropriate message
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Handle error and display appropriate error message
-        });
+    if (anglerInput && weightInput && speciesInput && locationInput && baitInput && captureTimeInput) {
+        let url = 'http://localhost:3030/data/catches';
+        fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Authorization': sessionStorage.getItem('accessToken')
+                },
+                body: JSON.stringify(newCatch)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Catch created successfully');
+                    // Clear the form fields
+                    anglerInput.value = '';
+                    weightInput.value = '';
+                    speciesInput.value = '';
+                    locationInput.value = '';
+                    baitInput.value = '';
+                    captureTimeInput.value = '';
+                } else {
+                    console.log('Failed to create catch');
+                    // Handle the error or display an appropriate message
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle error and display appropriate error message
+            });
 
         renderCatches();;
+    }
 }
 async function logoutEvent(event) {
+    document.getElementsByClassName('add')[0].disabled = true;
     document.getElementById('user').style.display = "none";
     document.getElementById('guest').style.display = "inline";
+
+    // disable edit and delete buttons
+
+    let updateButtons = document.getElementsByClassName('update');
+    let deleteButtons = document.getElementsByClassName('delete');
+
+    for (let x = 0; x < updateButtons.length; x++) {
+        updateButtons[x].disabled = true;
+    }
+
+    for (let y = 0; y < deleteButtons.length; y++) {
+        deleteButtons[y].disabled = true;
+    }
     try {
 
         let token = sessionStorage.getItem('accessToken');
