@@ -1,4 +1,4 @@
-```
+```bash
 Unit Tests for the last release
   E2E tests
     Authentication
