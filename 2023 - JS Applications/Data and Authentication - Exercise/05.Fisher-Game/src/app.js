@@ -10,7 +10,6 @@ for (let catchN = 0; catchN < getCatches.length; catchN++) {
 }
 
 
-
 try {
     for (let i = 0; i < buttons.length; i++) {
         if (buttons[i].classList.contains("load")) {

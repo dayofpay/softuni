@@ -329,7 +329,7 @@ describe('E2E tests', function () {
           return true;
         }
       });
-
+      
       expect(result.length).to.be.equals(2);
     });
 
