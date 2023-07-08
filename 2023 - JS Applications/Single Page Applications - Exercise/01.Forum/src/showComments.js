@@ -1,11 +1,15 @@
-async function showComments(id){
+import {
+    postComment
+} from "./postComment.js";
+let postId;
+async function showComments(id) {
+    postId = id
     let getContent = document.querySelector('.container > main:nth-child(1)');
 
 
-    let comments = await fetch("http://localhost:3030/jsonstore/collections/myboard/comments");
+
     let post = await fetch(`http://localhost:3030/jsonstore/collections/myboard/posts/${id}`);
     let postResponse = await post.json();
-    let commentsResponse = await comments.json();
 
     // Content
     getContent.innerHTML = `
@@ -18,24 +22,35 @@ async function showComments(id){
     </div>`
 
     // Comments
-
-    getContent.innerHTML += `
-    <div id="user-comment">
-    <div class="topic-name-wrapper">
-        <div class="topic-name">
-            <p><strong>Daniel</strong> commented on <time>3/15/2021, 12:39:02 AM</time></p>
-            <div class="post-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere sint
-                    dolorem quam.</p>
-            </div>
-        </div>
-    </div>
-</div>`
-
-// Comment
+    try {
+        let comments = await fetch("http://localhost:3030/jsonstore/collections/myboard/comments/" + id);
+        let commentsResponse = await comments.json();
 
 
-getContent.innerHTML +=`    <div class="answer-comment">
+
+        for (let comment in commentsResponse) {
+            getContent.innerHTML += `
+                <div id="user-comment">
+                <div class="topic-name-wrapper">
+                    <div class="topic-name">
+                        <p><strong>${commentsResponse[comment].user}</strong> commented on <time>${commentsResponse[comment].time}</time></p>
+                        <div class="post-content">
+                            <p>${commentsResponse[comment].commentContent}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+        }
+
+    }catch(error){
+        getContent.innerHTML += `<p>No Comments Found :( `;
+    }
+
+
+    // Comment
+
+
+    getContent.innerHTML += `    <div class="answer-comment">
 <p><span>currentUser</span> comment:</p>
 <div class="answer">
     <form>
@@ -48,6 +63,13 @@ getContent.innerHTML +=`    <div class="answer-comment">
     </form>
 </div>
 </div>`
+    let getPostButton = document.querySelector('.answer > form:nth-child(1) > button:nth-child(3)');
+
+    getPostButton.addEventListener('click', postComment);
+
 }
 
-export {showComments};
+export {
+    showComments,
+    postId
+};
