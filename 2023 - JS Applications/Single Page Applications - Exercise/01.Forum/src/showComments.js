@@ -41,7 +41,7 @@ async function showComments(id) {
         }
 
     }catch(error){
-        getContent.innerHTML += `<p>No Comments Found :( `;
+        getContent.innerHTML += `<p>No Comments Found :( </p>`;
     }
 
 
