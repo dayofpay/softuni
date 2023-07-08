@@ -18,3 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+
+
+// this solution doesnt give full points because i messed up with some of the css ( in my personal opinion i made the structure better then the described one but judge doesnt think like that :D)
