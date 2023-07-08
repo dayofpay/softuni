@@ -6,8 +6,6 @@ async function showComments(id) {
     postId = id
     let getContent = document.querySelector('.container > main:nth-child(1)');
 
-
-
     let post = await fetch(`http://localhost:3030/jsonstore/collections/myboard/posts/${id}`);
     let postResponse = await post.json();
 
@@ -33,9 +31,9 @@ async function showComments(id) {
                 <div id="user-comment">
                 <div class="topic-name-wrapper">
                     <div class="topic-name">
-                        <p><strong>${commentsResponse[comment].user}</strong> commented on <time>${commentsResponse[comment].time}</time></p>
+                        <p><strong>${commentsResponse[comment].username}</strong> commented on <time>${commentsResponse[comment].time}</time></p>
                         <div class="post-content">
-                            <p>${commentsResponse[comment].commentContent}</p>
+                            <p>${commentsResponse[comment].comment}</p>
                         </div>
                     </div>
                 </div>

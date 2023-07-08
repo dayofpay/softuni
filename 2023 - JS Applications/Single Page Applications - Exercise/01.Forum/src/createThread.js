@@ -20,8 +20,8 @@ async function createThread(e) {
     if(getTitle && getUsername && postContent){
         let postData = {
             title: getTitle,
-            user: getUsername,
-            post: postContent,
+            username: getUsername,
+            content: postContent,
             time : currentDate,
         };
     
@@ -40,9 +40,9 @@ async function createThread(e) {
 
     function cancelEvent(e){
         e.preventDefault();
-        getTitle.value = "";
-        getUsername.value = "";
-        postContent.value = "";
+        document.getElementById('topicName').value = "";
+        document.getElementById('username').value = "";
+        document.getElementById('postText').value = "";
     }
     getThreads();
 }

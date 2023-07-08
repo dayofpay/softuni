@@ -1,6 +1,7 @@
 import { createThread } from "./src/createThread.js";
 import { getThreads } from "./src/getThreads.js";
 import { homeEvent } from "./src/homeEvent.js";
+import { cancelEvent } from "./src/cancelEvent.js";
 document.addEventListener('DOMContentLoaded', function () {
     getThreads()
     // add event listener to the post button
@@ -15,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     homeButton.addEventListener('click',homeEvent);
 
+    let getCancelButton = document.getElementsByClassName('cancel')[0];
 
+    getCancelButton.addEventListener('click',cancelEvent);
 
 });
 

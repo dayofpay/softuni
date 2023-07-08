@@ -36,8 +36,8 @@ async function postComment(data){
     const formattedTime = `${month}/${day}/${year}, ${hour}:${minute}:${second} ${period}`;
 
     let postData = {
-        user : getCommentAuthor,
-        commentContent : getCommentContent,
+        username : getCommentAuthor,
+        comment : getCommentContent,
         time : formattedTime,
     }
 

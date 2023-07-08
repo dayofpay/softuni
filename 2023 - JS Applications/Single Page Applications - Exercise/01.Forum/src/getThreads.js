@@ -41,7 +41,7 @@ async function getThreads(e) {
         const usernameElement = document.createElement('p');
         usernameElement.textContent = `Username: `;
         const spanElement = document.createElement('span');
-        spanElement.textContent = posts[post].user;
+        spanElement.textContent = posts[post].username;
         usernameElement.appendChild(spanElement);
         nickNameElement.appendChild(usernameElement);
 
