@@ -16,7 +16,7 @@ async function showComments(id) {
         <img src="./static/profile.png" alt="avatar">
         <p><span>${postResponse.username}</span> posted on <time>${postResponse.time}</time></p>
 
-        <p class="post-content">${postResponse.post}</p>
+        <p class="post-content">${postResponse.content}</p>
     </div>`
 
     // Comments
