@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "chai": "^4.3.7",
+    "http-server": "^14.1.1",
+    "mocha": "^10.2.0",
+    "playwright-chromium": "^1.36.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/mocha": "^10.0.1"
+  },
+  "scripts": {
+    "test": "mocha tests",
+    "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1"
+  }
+}
