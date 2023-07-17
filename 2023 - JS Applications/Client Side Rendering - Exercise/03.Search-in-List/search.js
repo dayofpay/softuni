@@ -1,4 +1,3 @@
-import { towns } from "./towns.js";
 import { html, render } from 'https://unpkg.com/lit-html?module';
 
 export function search(e) {
