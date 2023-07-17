@@ -1,9 +1,10 @@
 //@ts-check
 const { chromium } = require('playwright-chromium');
 const { expect } = require('chai');
+const { log } = require('console');
 
 const host = 'http://localhost:3000'; // Application host (NOT service host - that can be anything)
-const DEBUG = true;
+const DEBUG = false;
 const slowMo = 500;
 
 let browser;
