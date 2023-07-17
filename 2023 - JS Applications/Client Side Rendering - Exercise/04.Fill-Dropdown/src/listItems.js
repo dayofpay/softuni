@@ -1,5 +1,4 @@
 import { makeRequest } from "../services/list.js";
-import { html, render } from 'https://unpkg.com/lit-html?module';
 export async function listItems(){
     const response = await makeRequest();
 
