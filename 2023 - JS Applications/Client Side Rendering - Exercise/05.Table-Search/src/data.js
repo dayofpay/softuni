@@ -21,16 +21,19 @@ export async function loadData() {
 
 
 export async function searchUser(e){
+  e.preventDefault()
     const getTableBody = document.getElementsByTagName('tr');
 
     const searchValue = document.querySelector('#searchField').value;
     console.log(searchValue);
 
-    for(let startItem = 1; startItem < getTableBody.length -1;startItem++){
+    if(searchValue){
+      for(let startItem = 1; startItem < getTableBody.length -1;startItem++){
         getTableBody[startItem].classList.remove('select');
         console.log(getTableBody[startItem].textContent);
         if(getTableBody[startItem].textContent.includes(searchValue)){
             getTableBody[startItem].classList.add('select');
         }
+    }
     }
 }
