@@ -2,6 +2,7 @@ import { render, html } from "../../node_modules/lit-html/lit-html.js";
 import { login } from "../api/users.js";
 import { updateNav } from "../utils.js";
 import page from "../../node_modules/page/page.mjs";
+import { setHeader } from "../api/headerApi.js";
 const loginPage = () => html`
 <div class="row space-top">
             <div class="col-md-12">
@@ -31,6 +32,7 @@ export async function loginView() {
 
 
   render(loginPage(), document.querySelector("body div.container"));
+  setHeader("Login")
 }
 
 async function submitHandler(event){

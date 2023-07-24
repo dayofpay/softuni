@@ -8,7 +8,7 @@ const catalogItem = (furniture) => html`
     <div class="card text-white bg-primary">
       <div class="card-body">
         <img src="${furniture.img}" />
-        <p>Description here</p>
+        <p>${furniture.description}</p>
         <footer>
           <p>Price: <span>${furniture.price} $</span></p>
         </footer>

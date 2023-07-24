@@ -2,6 +2,7 @@
 import page from "../../node_modules/page/page.mjs";
 import { updateNav } from "./utils.js";
 import { catalogView } from "./views/catalogView.js";
+import { createView } from "./views/createView.js";
 import { detailsView } from "./views/detailsView.js";
 import { loginView } from "./views/loginView.js";
 import { publicationsView } from "./views/publicationsView.js";
@@ -15,5 +16,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     page('/register',registerView)
     page('/details/:id',detailsView)
     page('/my-publications',publicationsView)
+    page('/create',createView);
     page.start();
 });

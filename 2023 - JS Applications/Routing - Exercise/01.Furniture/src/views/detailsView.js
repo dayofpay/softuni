@@ -55,5 +55,7 @@ export async function detailsView(context) {
 
   render(detailsTemplate(data), document.querySelector("body div.container"));
 
-  document.querySelector(".btn-red").addEventListener("click", onDelete);
+  if(data._ownerId === JSON.parse(sessionStorage.getItem("user"))?._id){
+    document.querySelector(".btn-red").addEventListener("click", onDelete);
+  }
 }
