@@ -46,11 +46,28 @@ async function submitHandler(event){
     const email = formData.get('email');
 
     const password = formData.get('password');
-    if(email && password){
-        await register(email,password);
 
-        updateNav();
-    
-        page.redirect("/")
+    const rePass = formData.get('rePass');
+
+    console.warn("[-] Starting Register Call...")
+
+    if(email.includes("@")){
+        if(password.length > 1){
+            if(password === rePass){
+                await register(email,password);
+
+                updateNav();
+            
+                page.redirect("/")
+            }else{
+                console.error("[!] Passwords Does not match !");
+            }
+        }
+        else{
+            console.error("[!] Invalid Password");
+        }
+    }
+    else{
+        console.error("[!] Invalid Email");
     }
 }
