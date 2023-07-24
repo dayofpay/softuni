@@ -2,6 +2,7 @@ import { render, html } from "../../node_modules/lit-html/lit-html.js";
 import { register} from "../api/users.js";
 import { updateNav } from "../utils.js";
 import page from "../../node_modules/page/page.mjs";
+import { setHeader } from "../api/headerApi.js";
 const registerPage = () => html`
 <div class="row space-top">
             <div class="col-md-12">
@@ -32,7 +33,7 @@ const registerPage = () => html`
 `
 export async function registerView() {
 
-
+  setHeader("Register")
   render(registerPage(), document.querySelector("body div.container"));
 }
 
