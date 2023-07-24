@@ -1,7 +1,6 @@
 import { render, html } from "../../node_modules/lit-html/lit-html.js";
 import { getAllFurniture } from "../api/data.js";
 import { logout } from "../api/users.js";
-import { updateNav } from "../utils.js";
 import { setHeader } from "../api/headerApi.js";
 const catalogItem = (furniture) => html`
   <div class="col-md-4">

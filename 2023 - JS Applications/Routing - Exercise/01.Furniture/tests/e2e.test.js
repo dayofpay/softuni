@@ -5,7 +5,7 @@ const host = 'http://localhost:3000'; // Application host (NOT service host - th
 
 const interval = 300;
 const timeout = 6000;
-const DEBUG = true;
+const DEBUG = false;
 const slowMo = 500;
 
 const mockData = {
