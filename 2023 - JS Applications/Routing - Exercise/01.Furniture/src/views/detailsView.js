@@ -3,9 +3,6 @@ import { getFurnitureById } from "../api/data.js";
 import { onDelete } from "./deleteView.js";
 
 const detailsTemplate = (furniture) => {
-  // const isFurnitureOwner =
-  //   JSON.parse(sessionStorage.getItem("user")) &&
-  //   furniture._ownerId === JSON.parse(sessionStorage.getItem("user"))._id;
 
   const isFurnitureOwner =
     furniture._ownerId === JSON.parse(sessionStorage.getItem("user"))?._id;

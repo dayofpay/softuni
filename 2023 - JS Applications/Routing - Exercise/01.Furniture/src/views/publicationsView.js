@@ -44,8 +44,7 @@ export async function publicationsView() {
   
     const data = await getAllFurniture();
   
-    console.log(ownerId);
-    console.log(data);
+
   
     const filteredData = data.filter((furniture) => furniture._ownerId === ownerId);
     render(catalogTemplate(filteredData), document.querySelector("body div.container"));
