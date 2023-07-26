@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     page('/login',renderLogin)
     page('/browse',renderBrowse);
     page('/create-team',renderTeamCreate);
-    page('/browse/details/:id',renderEditPage);
+    page('/browse/edit/:id',renderEditPage);
     page('/teams',renderMyTeams);
     page.start();
 });
