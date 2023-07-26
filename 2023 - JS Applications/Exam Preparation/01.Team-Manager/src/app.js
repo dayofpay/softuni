@@ -8,6 +8,8 @@ import { logout } from "./api/services.js";
 import { renderLogin } from "./views/loginView.js";
 import { renderBrowse } from "./views/browseView.js";
 import { renderTeamCreate } from "./views/createTeamView.js";
+import { renderEditPage } from "./views/editView.js";
+import { renderMyTeams } from "./views/myTeamsView.js";
 document.addEventListener('DOMContentLoaded', async function () {
 
     document.getElementById('logoutBtn').addEventListener('click',logout);
@@ -22,5 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     page('/login',renderLogin)
     page('/browse',renderBrowse);
     page('/create-team',renderTeamCreate);
+    page('/browse/details/:id',renderEditPage);
+    page('/teams',renderMyTeams);
     page.start();
 });
