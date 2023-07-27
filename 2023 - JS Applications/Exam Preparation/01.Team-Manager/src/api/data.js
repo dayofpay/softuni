@@ -45,7 +45,10 @@ export async function updateTeam(teamId, teamData) {
     throw error;
   }
 }
-
+export async function removeUserFromTeam(membershipData) {
+  const endpoint = `/data/members/${membershipData.teamId}`;
+  return api.del(endpoint, membershipData);
+}
 export async function requestToJoinTeam(team, user) {
   // const endpoint = endpoints.listMembers + `where=teamId%3D%22${encodeURIComponent(team.teamId)}%22`;
   const endpoint = "/data/members";
