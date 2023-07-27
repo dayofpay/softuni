@@ -9,7 +9,7 @@ const createTeamView = html `
       <h1>New Team</h1>
     </header>
     <form id="create-form" class="main-form pad-large" @submit="${onSubmit}">
-      <div id="error" class="error"></div> <!-- Add this line to create the error div -->
+      <div id="error" class="error"></div>
       <label>Team name: <input type="text" name="name"></label>
       <label>Logo URL: <input type="text" name="logoUrl"></label>
       <label>Description: <textarea name="description"></textarea></label>

@@ -10,6 +10,9 @@ import { renderBrowse } from "./views/browseView.js";
 import { renderTeamCreate } from "./views/createTeamView.js";
 import { renderEditPage } from "./views/editView.js";
 import { renderMyTeams } from "./views/myTeamsView.js";
+import { getAllMembershipsForTeam } from "./api/data.js";
+import { renderDetailsView } from "./views/teamDetailsView.js";
+
 document.addEventListener('DOMContentLoaded', async function () {
 
     document.getElementById('logoutBtn').addEventListener('click',logout);
@@ -18,13 +21,14 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     _debugger('Starting Application ... \r\n Address > ' + window.location);
     updateNav();
-
+    console.log(getAllMembershipsForTeam("34a1cab1-81f1-47e5-aec3-ab6c9810efe1"));
     page('/',renderHome);
     page('/register',renderRegister);
     page('/login',renderLogin)
     page('/browse',renderBrowse);
     page('/create-team',renderTeamCreate);
     page('/browse/edit/:id',renderEditPage);
+    page('/browse/details/:id',renderDetailsView);
     page('/teams',renderMyTeams);
     page.start();
 });

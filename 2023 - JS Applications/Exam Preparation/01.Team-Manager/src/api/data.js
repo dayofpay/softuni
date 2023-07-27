@@ -1,5 +1,7 @@
 import * as api from "./api.js";
 
+
+
 const endpoints = {
   listTeams: "/data/teams",
   listMembers: "/data/members?",
@@ -14,7 +16,10 @@ export async function getTeamMembers(team) {
   const endpoint = endpoints.listMembers + `where=teamId%3D%22${encodeURIComponent(team)}%22`;
   return api.get(endpoint);
 }
-
+export async function getAllMembershipsForTeam(teamId) {
+  const endpoint = endpoints.listMembers + `where=teamId%3D%22${encodeURIComponent(teamId)}%22&load=user%3D_ownerId%3Ausers`;
+  return api.get(endpoint);
+}
 export async function getTeamData(teamId) {
   return api.get(`/data/teams/${teamId}`);
 }
@@ -41,7 +46,11 @@ export async function updateTeam(teamId, teamData) {
   }
 }
 
-export async function requestToJoinTeam(user, team) {
-  const endpoint = endpoints.listMembers + `where=teamId%3D%22${encodeURIComponent(team)}%22`;
-  return api.post(endpoint);
+export async function requestToJoinTeam(team, user) {
+  // const endpoint = endpoints.listMembers + `where=teamId%3D%22${encodeURIComponent(team.teamId)}%22`;
+  const endpoint = "/data/members";
+  const teamId = team.teamId
+  console.log(team);
+  return api.post(endpoint, {teamId});
 }
+
