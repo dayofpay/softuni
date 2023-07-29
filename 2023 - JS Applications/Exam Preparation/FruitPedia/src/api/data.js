@@ -23,6 +23,15 @@ export async function delFruit(fruitid) {
   const endpoint = `/data/fruits/${fruitid}`;
   return api.del(endpoint)
 };
+
+export async function addFruit(fruitData){
+  console.log(fruitData);
+  return api.post(endpoints.fruitData,fruitData)
+}
+export async function getFruitsByQuery(query) {
+  const endpoint = endpoints.fruitData + `?where=name%20LIKE%20%22${query}%22`;
+  return api.get(endpoint);
+}
 export async function updateFruit(fruitId, fruitData) {
   try {
     const updatedtFruit = await api.put(`/data/fruits/${fruitId}`, {

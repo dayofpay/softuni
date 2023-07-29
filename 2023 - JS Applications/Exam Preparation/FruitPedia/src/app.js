@@ -9,6 +9,8 @@ import { renderRegister } from "./views/registerView.js";
 import { renderFruitsView } from "./views/fruitsView.js";
 import { renderDetails } from "./views/detailsView.js";
 import { renderEditView } from "./views/editView.js";
+import { renderAddPage } from "./views/addFruit.js";
+import { renderSearchPage } from "./views/searchView.js";
 
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -23,5 +25,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     page('/fruits',renderFruitsView);
     page('/fruits/details/:id',renderDetails);
     page('/fruits/edit/:id',renderEditView)
+    page('/add-fruit',renderAddPage);
+    page('/search',renderSearchPage);
     page.start();
 });
