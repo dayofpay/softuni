@@ -6,7 +6,7 @@ const userApplicationHttpPort = "3000";
 
 const host = "http://localhost:" + userApplicationHttpPort; // Application host (NOT service host - that can be anything)
 const interval = 200;
-const DEBUG = true;
+const DEBUG = false;
 
 const slowMo = 300;
 
