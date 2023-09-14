@@ -11,7 +11,7 @@ const urlList = {
         contentType: 'text/html',
         content: homeHtml,
     },
-    '/cats/add-bread' : {
+    '/cats/add-breed' : {
         contentType : 'text/html',
         content : addCatBreedHtml,
     },

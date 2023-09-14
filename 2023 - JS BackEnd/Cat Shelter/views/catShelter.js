@@ -1,3 +1,6 @@
+
+const navigation = require('../navigation');
+
 module.exports = `<!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +16,7 @@ module.exports = `<!DOCTYPE html>
 <body>
     <header>
         <nav>
-            <ul class="navigation">
-                <li><a href="">Home Page</a></li>
-                <li><a href="">Add Breed</a></li>
-                <li><a href="">Add Cat</a></li>
-            </ul>
+        ${navigation}
         </nav>
         <h1>Cat Shelter</h1>
     </header>
