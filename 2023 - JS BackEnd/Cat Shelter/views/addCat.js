@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+module.exports = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,20 +23,22 @@
     </header>
     <main>
         <form action="#" method="" class="cat-form" enctype="multipart/form-data">
-            <h2>Edit Cat</h2>
+            <h2>Add Cat</h2>
             <label for="name">Name</label>
-            <input type="text" id="name" value="Pretty Cat">
+            <input name="name" type="text" id="name">
             <label for="description">Description</label>
-            <textarea id="description">Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.</textarea>
+            <textarea name="description" id="description"></textarea>
             <label for="image">Image</label>
-            <input type="file" id="image">
+            <input name="upload" type="file" id="image">
             <label for="group">Breed</label>
-            <select id="group">
+            <select name="breed" id="group">
                 <option value="Fluffy Cat">Fluffy Cat</option>
+				<option value="Fluffy Cat">Fluffy Cat</option>
+				<option value="Fluffy Cat">Fluffy Cat</option>
             </select>
-            <button>Edit Cat</button>
+            <button type="submit">Add Cat</button>
         </form>
     </main>
 </body>
 
-</html>
+</html>`;
