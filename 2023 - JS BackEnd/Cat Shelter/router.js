@@ -6,6 +6,7 @@ const addCatBreedHtml = require('./views/addBreed.js');
 const addCatHtml = require('./views/addCat.js');
 const catShelterHtml = require('./views/catShelter.js');
 const editCatHtml = require('./views/editCat.js');
+const { variableData, replacePlaceholders } = require('./placeholders.js');
 const urlList = {
     "/": {
         contentType: 'text/html',
@@ -37,12 +38,14 @@ const urlList = {
 function handleRequest(url, res) {
     const route = urlList[url];
     if (route) {
+
+        const htmlTemplate = replacePlaceholders(route.content, variableData);
         res.writeHead(200, { 'Content-Type': route.contentType });
-        res.write(route.content);
+        res.write(htmlTemplate);
         res.end();
     } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.write('Not Found');
+        res.write('404 Not Found :X');
         res.end();
     }
 }
