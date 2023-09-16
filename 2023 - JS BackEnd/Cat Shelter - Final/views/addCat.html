@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../content/styles/site.css">
+    <script src="../../content/javascript/addCat.js"></script>
+
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <title>Cat Shelter</title>
 </head>
@@ -18,13 +20,13 @@
     <main>
         <form action="/cats/add-cat" method="POST" class="cat-form">
             <label for="name">Name</label>
-            <input name="name" type="text" id="name">
+            <input name="name" type="text" id="name" required>
             <label for="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <textarea name="description" id="description" required></textarea>
             <label for="image">Image</label>
-            <input name="upload" type="file" id="image">
+            <input name="upload" type="file" id="image" required>
             <label for="group">Breed</label>
-            <select name="breed" id="group">
+            <select name="breed" id="group" required>
                 <option value="Fluffy Cat">Fluffy Cat</option>
                 <option value="Another Breed">Another Breed</option>
             </select>
