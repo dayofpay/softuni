@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const variables = require('./views/utils/variables');
+const handleAddCat = require('./handlers/addCat');
+const handleAddBreed = require('./handlers/addBread');
 const urlList = {
     "/": {
         contentType: 'text/html',

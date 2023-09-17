@@ -2,7 +2,8 @@ const fs = require('fs');
 
 const catData = fs.readFileSync('./data/cats.json');
 let catJSON = JSON.parse(catData);
-
+const breedData = fs.readFileSync('./data/breeds.json');
+let breedJSON = JSON.parse(breedData);
 const variables = {
     "{navigation}": `
     <nav>
@@ -14,6 +15,7 @@ const variables = {
     </nav>
     `,
     "{cats}": generateCatList(catJSON),
+    "{breeds}" : generateBreedList(breedJSON),
 };
 
 function generateCatList(cats) {
@@ -34,5 +36,13 @@ function generateCatList(cats) {
     catListHTML += '</ul>';
     return catListHTML;
 }
+function generateBreedList(breeds){
 
+    let breedlist = ``;
+    breeds.forEach((breed) => {
+        breedlist += `<option value="${breed.breed}">${breed.breed}</option>`
+    })
+    return breedlist.length > 5 ? breedlist : `<option value="handlers.emptyBreeds">Breed list is empty !</option>`;
+
+}
 module.exports = variables;

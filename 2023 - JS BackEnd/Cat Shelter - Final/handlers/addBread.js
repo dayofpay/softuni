@@ -1,4 +1,6 @@
-import { generateBreedId } from "./idHandler";
+const querystring = require('querystring');
+const generateBreedId = require('./generateBreedID');
+const fs = require('fs');
 
 function handleAddBreed(req, res) {
     let formData = '';

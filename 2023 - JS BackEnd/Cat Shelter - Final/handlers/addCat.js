@@ -1,4 +1,6 @@
-import { generateUniqueCatId } from "./idHandler";
+const querystring = require('querystring');
+const generateUniqueCatId = require('./generateCatID');
+const fs = require('fs');
 function handleAddCat(req, res) {
     let formData = '';
 
