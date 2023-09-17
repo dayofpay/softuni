@@ -25,7 +25,7 @@ function handleAddBreed(req, res) {
         breedJSON.push(newBreed);
 
         fs.writeFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.BREEDS, JSON.stringify(breedJSON));
-        res.writeHead(302, { Location: '/' }); // Redirect to the home page
+        res.writeHead(302, { Location: config.URL_LIST.ROOT }); // Redirect to the home page
         res.end();
     });
 }

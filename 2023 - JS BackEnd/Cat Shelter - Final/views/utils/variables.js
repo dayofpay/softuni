@@ -17,6 +17,8 @@ const variables = {
     `,
     "{cats}": generateCatList(catJSON),
     "{breeds}" : generateBreedList(breedJSON),
+    "{siteName}" : config.APPLICATION_NAME,
+    "{locales.Search}" : config.LOCALES.SEARCH,
 };
 
 function generateCatList(cats) {

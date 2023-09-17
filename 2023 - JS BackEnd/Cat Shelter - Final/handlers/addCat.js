@@ -29,7 +29,7 @@ function handleAddCat(req, res) {
         catJSON.push(newCat);
 
         fs.writeFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.CATS, JSON.stringify(catJSON));
-        res.writeHead(302, { Location: '/' });
+        res.writeHead(302, { Location: config.URL_LIST.ROOT });
         res.end();
     });
 }

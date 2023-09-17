@@ -43,7 +43,8 @@ const LOCALES = {
     'DESCRIPTION' : 'Description',
     'CHANGE_INFO' : 'Change Info',
     'NEW_HOME' : 'New Home',
-
+    'LOADING_PROCESS' : 'Loading ...',
+    'SEARCH' : 'Search',
 }
 
 const DEFAULT_DATABASE_SETTINGS = {
