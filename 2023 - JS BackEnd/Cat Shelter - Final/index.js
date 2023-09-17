@@ -1,5 +1,6 @@
 const http = require('http');
-const port = 7953;
+const config = require('./config/env');
+const port = config.APPLICATION_PORT
 const handleRequest = require('./router.js');
 
 const server = http.createServer((req, res) => {

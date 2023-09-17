@@ -1,7 +1,7 @@
 const querystring = require('querystring');
 const generateBreedId = require('./generateBreedID');
 const fs = require('fs');
-
+const config = require('../config/env');
 function handleAddBreed(req, res) {
     let formData = '';
 
@@ -11,7 +11,7 @@ function handleAddBreed(req, res) {
 
     req.on('end', () => {
         const parsedData = querystring.parse(formData);
-        const catData = fs.readFileSync('./data/breeds.json');
+        const catData = fs.readFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.BREEDS);
         let breedJSON = JSON.parse(catData);
         console.log(formData);
         const newBreedId = generateBreedId(breedJSON);
@@ -24,7 +24,7 @@ function handleAddBreed(req, res) {
 
         breedJSON.push(newBreed);
 
-        fs.writeFileSync('./data/breeds.json', JSON.stringify(breedJSON));
+        fs.writeFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.BREEDS, JSON.stringify(breedJSON));
         res.writeHead(302, { Location: '/' }); // Redirect to the home page
         res.end();
     });

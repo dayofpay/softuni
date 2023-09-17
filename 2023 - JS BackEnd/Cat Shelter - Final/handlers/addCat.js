@@ -1,6 +1,8 @@
 const querystring = require('querystring');
 const generateUniqueCatId = require('./generateCatID');
 const fs = require('fs');
+const config = require('../config/env');
+
 function handleAddCat(req, res) {
     let formData = '';
 
@@ -10,7 +12,7 @@ function handleAddCat(req, res) {
 
     req.on('end', () => {
         const parsedData = querystring.parse(formData);
-        const catData = fs.readFileSync('./data/cats.json');
+        const catData = fs.readFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.CATS);
         let catJSON = JSON.parse(catData);
         console.log(formData);
         const newCatId = generateUniqueCatId(catJSON);
@@ -26,7 +28,7 @@ function handleAddCat(req, res) {
 
         catJSON.push(newCat);
 
-        fs.writeFileSync('./data/cats.json', JSON.stringify(catJSON));
+        fs.writeFileSync('./data/' + config.DATABASE_SETTINGS.DATA_LIST.CATS, JSON.stringify(catJSON));
         res.writeHead(302, { Location: '/' });
         res.end();
     });

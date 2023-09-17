@@ -35,6 +35,18 @@ const urlList = {
         supportedMethods : ['GET'],
     },
 };
+
+
+
+
+const restServices = {
+     // TODO
+    "/cats/delete-cat/:{{ID}}" : {
+        action : null,//TODO
+        supportedMethods : ['DELETE'],
+    }
+         // TODO
+}
 function handleRequest(url, res,req) {
     const route = urlList[url];
     const REQUEST_METHOD = req.method;

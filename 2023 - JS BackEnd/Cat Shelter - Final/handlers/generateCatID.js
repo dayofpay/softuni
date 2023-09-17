@@ -1,6 +1,9 @@
+const config = require('../config/env');
+
+
 function generateUniqueCatId(catJSON) {
     const timestamp = Date.now();
-    return `cat_${timestamp}`;
+    return `${config.HANDLER_SETTINGS.CAT_PREFIX}${timestamp}`;
 }
 
 

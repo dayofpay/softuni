@@ -4,13 +4,14 @@ const catData = fs.readFileSync('./data/cats.json');
 let catJSON = JSON.parse(catData);
 const breedData = fs.readFileSync('./data/breeds.json');
 let breedJSON = JSON.parse(breedData);
+const config = require('../../config/env');
 const variables = {
     "{navigation}": `
     <nav>
         <ul class="navigation">
-            <li><a href="/">Home Page</a></li>
-            <li><a href="/cats/add-breed">Add Breed</a></li>
-            <li><a href="/cats/add-cat">Add Cat</a></li>
+            <li><a href="${config.URL_LIST.ROOT}">${config.LOCALES.HOME_PAGE}</a></li>
+            <li><a href="${config.URL_LIST.ADD_BREED}">${config.LOCALES.ADD_BREED}</a></li>
+            <li><a href="${config.URL_LIST.ADD_CAT}">${config.LOCALES.ADD_CAT}</a></li>
         </ul>
     </nav>
     `,
@@ -25,11 +26,11 @@ function generateCatList(cats) {
             <li>
                 <img src="${cat.imageUrl}" alt="${cat.name}">
                 <h3>${cat.name}</h3>
-                <p><span>Breed: </span>${cat.breed}</p>
-                <p><span>Description: </span>${cat.description}</p>
+                <p><span>${config.LOCALES.BREED}: </span>${cat.breed}</p>
+                <p><span>${config.LOCALES.DESCRIPTION}: </span>${cat.description}</p>
                 <ul class="buttons">
-                    <li class="btn edit"><a href="/cats/edit-cat/${cat.id}">Change Info</a></li>
-                    <li class="btn delete"><a href="/cats/new-home/${cat.id}">New Home</a></li>
+                    <li class="btn edit"><a href="${config.URL_LIST.EDIT_CAT}${cat.id}">${config.LOCALES.CHANGE_INFO}</a></li>
+                    <li class="btn delete"><a href="${config.URL_LIST['NEW-HOME']}${cat.id}">${config.LOCALES.NEW_HOME}</a></li>
                 </ul>
             </li>`;
     });
@@ -42,7 +43,7 @@ function generateBreedList(breeds){
     breeds.forEach((breed) => {
         breedlist += `<option value="${breed.breed}">${breed.breed}</option>`
     })
-    return breedlist.length > 5 ? breedlist : `<option value="handlers.emptyBreeds">Breed list is empty !</option>`;
+    return breedlist.length > config.DATABASE_SETTINGS.MINIMUM_BREED_LIST_LENGTH ? breedlist : `<option value="${config.DATABASE_SETTINGS.ERROR_LOCALES.NO_BREEDS['OPTION.VALUE']}">${config.DATABASE_SETTINGS.ERROR_LOCALES.NO_BREEDS['OPTION.VALUE.CONTENT']}</option>`;
 
 }
 module.exports = variables;
