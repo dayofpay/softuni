@@ -12,25 +12,45 @@
 
 <body>
     <header>
-        {navigation}>
+        {navigation}
         <h1>{siteName}</h1>
     </header>
     <main>
-        <form action="#" method="" class="cat-form" enctype="multipart/form-data">
-            <h2>Edit Cat</h2>
-            <label for="name">Name</label>
-            <input type="text" id="name" value="Pretty Cat">
-            <label for="description">Description</label>
-            <textarea id="description">Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.</textarea>
-            <label for="image">Image</label>
-            <input type="file" id="image">
-            <label for="group">Breed</label>
-            <select id="group">
-                <option value="Fluffy Cat">Fluffy Cat</option>
-            </select>
-            <button>Edit Cat</button>
-        </form>
+        {catActions}
     </main>
+
+    <script>
+        document.getElementById('editCatForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', form.getAttribute('action'), true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            xhr.send(JSON.stringify(data));
+
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('Cat edited successfully.');
+
+                    } else {
+                        console.error('An error occurred while editing the cat.');
+                    }
+                }
+            };
+        });
+    </script>
 </body>
 
 </html>

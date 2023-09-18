@@ -39,12 +39,15 @@ const LOCALES = {
     'HOME_PAGE' : 'Home Page',
     'ADD_BREED' : 'Add Breed',
     'ADD_CAT' : 'Add Cat',
+    'EDIT_CAT' : 'Edit cat',
+    'IMAGE' : 'Image',
     'BREED' : 'Breed',
     'DESCRIPTION' : 'Description',
     'CHANGE_INFO' : 'Change Info',
     'NEW_HOME' : 'New Home',
     'LOADING_PROCESS' : 'Loading ...',
     'SEARCH' : 'Search',
+    'DATABASE_QUERY_NOT_EXIST' : `This cat does not exist in our database`,
 }
 
 const DEFAULT_DATABASE_SETTINGS = {

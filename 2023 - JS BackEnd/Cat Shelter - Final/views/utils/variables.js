@@ -5,6 +5,8 @@ let catJSON = JSON.parse(catData);
 const breedData = fs.readFileSync('./data/breeds.json');
 let breedJSON = JSON.parse(breedData);
 const config = require('../../config/env');
+const getCatData = require('../../services/getCatData');
+const currentCat = require('../../cache/cache')
 const variables = {
     "{navigation}": `
     <nav>
@@ -19,6 +21,8 @@ const variables = {
     "{breeds}" : generateBreedList(breedJSON),
     "{siteName}" : config.APPLICATION_NAME,
     "{locales.Search}" : config.LOCALES.SEARCH,
+    "{catActions}": () => generateEditCatView(getCatData(currentCat.currentCatId)),
+    "{catId}" : "cat_1694910062234", // Only for demo !
 };
 
 function generateCatList(cats) {
@@ -48,4 +52,33 @@ function generateBreedList(breeds){
     return breedlist.length > config.DATABASE_SETTINGS.MINIMUM_BREED_LIST_LENGTH ? breedlist : `<option value="${config.DATABASE_SETTINGS.ERROR_LOCALES.NO_BREEDS['OPTION.VALUE']}">${config.DATABASE_SETTINGS.ERROR_LOCALES.NO_BREEDS['OPTION.VALUE.CONTENT']}</option>`;
 
 }
+
+
+function generateEditCatView(catData) {
+    if (catData.hasOwnProperty('ERROR')) {
+      return `<h2>${config.LOCALES.DATABASE_QUERY_NOT_EXIST}</h2>`;
+    } else {
+      const catDataHTML = `
+        <h2>Edit Cat</h2>
+        <form action="/cats/edit-cat/" method="PUT" class="cat-form" id="editCatForm">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" value="${catData.name}">
+          <label for="description">${config.LOCALES.DESCRIPTION}</label>
+          <textarea id="description" name="description">${catData.description}</textarea>
+          <label for="image">${config.LOCALES.IMAGE}</label>
+          <input type="file" id="image" name="image">
+          <label for="group">${config.LOCALES.BREED}</label>
+          <select id="group" name="breed">
+            <option value="${catData.breed}">${catData.breed}</option>
+            ${generateBreedList(breedJSON)}
+          </select>
+          <input id="catId" value="${catData.id}" hidden name="catId">
+          <button type="submit">${config.LOCALES.EDIT_CAT}</button>
+        </form>`;
+  
+      return catDataHTML;
+    }
+  }
+  
+
 module.exports = variables;

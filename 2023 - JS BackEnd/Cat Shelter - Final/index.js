@@ -1,7 +1,7 @@
 const http = require('http');
 const config = require('./config/env');
 const port = config.APPLICATION_PORT
-const handleRequest = require('./router.js');
+const handleRequest = require('./router');
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
