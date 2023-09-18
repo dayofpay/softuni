@@ -1,14 +1,19 @@
-const DEFAULT_TIMEOUT = 1000; // IN MS
+// Default timeout in milliseconds
+const DEFAULT_TIMEOUT = 1000;
 
+// Name of the application
 const APPLICATION_NAME = 'Cat Shelter';
 
+// Version of the application
 const APPLICATION_VERSION = 1.0;
 
+// Port on which the application will run
 const APPLICATION_PORT = 7953;
 
-
+// Timeout limit for requests in milliseconds
 const REQUEST_TIMEOUT_LIMIT = 25000;
 
+// Database settings including method, data lists, error locales, and factory reset flags
 const DATABASE_SETTINGS = {
     'METHOD' : 'JSON',
     'DATA_LIST' : {
@@ -26,16 +31,20 @@ const DATABASE_SETTINGS = {
         }
     },
     'FACTORY_RESET' : { // Set a value to true if you want to reset the corresponding database "column" to default values on server start
-        'CATS' : false,
-        'BREEDS' : false,
+        'CATS' : false, // Flag to reset the 'CATS' database
+        'BREEDS' : false, // Flag to reset the 'BREEDS' database
     },
-    'MINIMUM_BREED_LIST_LENGTH' : 5,
+    'MINIMUM_BREED_LIST_LENGTH' : 5, // Minimum length for the breed list
 }
+
+// Handler settings including prefixes and method
 const HANDLER_SETTINGS = {
     'BREED_PREFIX' : 'breed_',
     'CAT_PREFIX' : 'cat_',
     'HANDLER_METHOD' : 'timestamp',
 }
+
+// URL list with various endpoints
 const URL_LIST = {
     'ROOT' : '/',
     'ADD_BREED' : '/cats/add-breed',
@@ -43,6 +52,8 @@ const URL_LIST = {
     'EDIT_CAT' : '/cats/edit-cat/',
     'NEW-HOME' : '/cats/new-home/',
 }
+
+// Localization settings including page titles and labels
 const LOCALES = {
     'HOME_PAGE' : 'Home Page',
     'ADD_BREED' : 'Add Breed',
@@ -58,6 +69,7 @@ const LOCALES = {
     'DATABASE_QUERY_NOT_EXIST' : `This cat does not exist in our database`,
 }
 
+// Default database settings including sample cat data
 const DEFAULT_DATABASE_SETTINGS = {
     'CATS' : 
     [{
@@ -86,24 +98,35 @@ const DEFAULT_DATABASE_SETTINGS = {
         "description": "Very cute cat"
     }]
 }
+
+// Export the configuration settings
 module.exports = {
     'DEFAULT_TIMEOUT' : DEFAULT_TIMEOUT,
 
+
     'APPLICATION_NAME' : APPLICATION_NAME,
+
 
     'APPLICATION_VERSION' : APPLICATION_VERSION,
 
+
     'APPLICATION_PORT' : APPLICATION_PORT,
+
 
     'REQUEST_TIMEOUT_LIMIT' : REQUEST_TIMEOUT_LIMIT,
 
+
     'DATABASE_SETTINGS' : DATABASE_SETTINGS,
-    
+
+
     'LOCALES' : LOCALES,
+
 
     'URL_LIST' : URL_LIST,
 
+
     'HANDLER_SETTINGS' : HANDLER_SETTINGS,
 
+    
     'DEFAULT_DATABASE_SETTINGS' : DEFAULT_DATABASE_SETTINGS,
 }
