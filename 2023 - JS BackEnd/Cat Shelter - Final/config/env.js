@@ -14,12 +14,20 @@ const DATABASE_SETTINGS = {
     'DATA_LIST' : {
         'BREEDS' : 'breeds.json',
         'CATS' : 'cats.json',
+        'DEFAULT_SETTINGS' : {
+            'BREEDS' : 'breeds-default.json',
+            'CATS' : 'cats-default.json',
+        }
     },
     'ERROR_LOCALES' : {
         'NO_BREEDS' : {
             'OPTION.VALUE' : 'no_breeds',
             'OPTION.VALUE.CONTENT' : 'Breed list is empty !',
         }
+    },
+    'FACTORY_RESET' : { // Set a value to true if you want to reset the corresponding database "column" to default values on server start
+        'CATS' : false,
+        'BREEDS' : false,
     },
     'MINIMUM_BREED_LIST_LENGTH' : 5,
 }
