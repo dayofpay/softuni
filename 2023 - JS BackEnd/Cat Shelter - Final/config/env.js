@@ -98,6 +98,9 @@ const DEFAULT_DATABASE_SETTINGS = {
         "name": "Pesho",
         "breed": "Bengal Cat",
         "description": "Very cute cat"
+    }],
+    'BREEDS' : [{
+        
     }]
 }
 
