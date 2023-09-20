@@ -5,6 +5,8 @@ const variables = require('./views/utils/variables');
 const handleAddCat = require('./handlers/addCat');
 const handleAddBreed = require('./handlers/addBread');
 const handleShowCatDetails = require('./handlers/showCatDetails');
+const handleShowCatShelter = require('./handlers/showCatShelter');
+const deleteCat = require('./handlers/shelterCat');
 let catData = require('./cache/cache');
 const editCat = require('./handlers/editCat');
 const urlList = {
@@ -59,8 +61,17 @@ function handleRequest(url, res, req) {
         console.log(catData.currentCatId);
         return handleShowCatDetails(req,res,catId);
     }
+    else if(pathName.includes('new-home') && REQUEST_METHOD === 'GET'){
+        const catId = pathName.split('/')[3];
+        catData.currentCatId = catId;
+        return handleShowCatShelter(req,res,catId);
+    }
     else if(REQUEST_METHOD === 'PUT' && url === '/cats/edit-cat/'){
         editCat(req,res);
+    }
+
+    else if(REQUEST_METHOD === 'DELETE' && url === '/cats/shelter-cat/'){
+        deleteCat(req,res);
     }
     if (route) {
         if (route.supportedMethods.includes(REQUEST_METHOD)) {

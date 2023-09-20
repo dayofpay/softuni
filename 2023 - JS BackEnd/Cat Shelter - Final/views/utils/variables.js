@@ -22,6 +22,7 @@ const variables = {
     "{siteName}" : config.APPLICATION_NAME,
     "{locales.Search}" : config.LOCALES.SEARCH,
     "{catActions}": () => generateEditCatView(getCatData(currentCat.currentCatId)),
+    "{shelterCat}" : () => generateShelterCatView(getCatData(currentCat.currentCatId)),
     "{catId}" : "cat_1694910062234", // Only for demo !
 };
 
@@ -74,6 +75,33 @@ function generateEditCatView(catData) {
           </select>
           <input id="catId" value="${catData.id}" hidden name="catId">
           <button type="submit">${config.LOCALES.EDIT_CAT}</button>
+        </form>`;
+  
+      return catDataHTML;
+    }
+  }
+
+
+  function generateShelterCatView(catData){
+    if (catData.hasOwnProperty('ERROR')) {
+      return `<h2>${config.LOCALES.DATABASE_QUERY_NOT_EXIST}</h2>`;
+    } else {
+      const catDataHTML = `
+        <h2>Shelter Cat</h2>
+        <form action="/cats/shelter-cat/" method="DELETE" class="cat-form" id="shelterCatForm">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" value="${catData.name}">
+          <label for="description">${config.LOCALES.DESCRIPTION}</label>
+          <textarea id="description" name="description">${catData.description}</textarea>
+          <label for="image">${config.LOCALES.IMAGE}</label>
+          <input type="file" id="image" name="image">
+          <label for="group">${config.LOCALES.BREED}</label>
+          <select id="group" name="breed">
+            <option value="${catData.breed}">${catData.breed}</option>
+            ${generateBreedList(breedJSON)}
+          </select>
+          <input id="catId" value="${catData.id}" hidden name="catId">
+          <button type="submit">${config.LOCALES.SHELTER_CAT}</button>
         </form>`;
   
       return catDataHTML;

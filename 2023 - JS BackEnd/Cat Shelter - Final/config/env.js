@@ -13,6 +13,7 @@ const APPLICATION_PORT = 7953;
 // Timeout limit for requests in milliseconds
 const REQUEST_TIMEOUT_LIMIT = 25000;
 
+
 // Database settings including method, data lists, error locales, and factory reset flags
 const DATABASE_SETTINGS = {
     'METHOD' : 'JSON',
@@ -31,7 +32,7 @@ const DATABASE_SETTINGS = {
         }
     },
     'FACTORY_RESET' : { // Set a value to true if you want to reset the corresponding database "column" to default values on server start
-        'CATS' : false, // Flag to reset the 'CATS' database
+        'CATS' : true, // Flag to reset the 'CATS' database
         'BREEDS' : false, // Flag to reset the 'BREEDS' database
     },
     'MINIMUM_BREED_LIST_LENGTH' : 5, // Minimum length for the breed list
@@ -67,34 +68,35 @@ const LOCALES = {
     'LOADING_PROCESS' : 'Loading ...',
     'SEARCH' : 'Search',
     'DATABASE_QUERY_NOT_EXIST' : `This cat does not exist in our database`,
+    'SHELTER_CAT' : 'Shelter cat',
 }
 
 // Default database settings including sample cat data
 const DEFAULT_DATABASE_SETTINGS = {
     'CATS' : 
     [{
-        "id": 1,
+        "id": "cat_1",
         "imageUrl": "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
         "name": "Ivanka",
-        "breed": "persiiska",
+        "breed": "Bengal Cat",
         "description": "Very cute cat"
     }, {
-        "id": 2,
+        "id": "cat_2",
         "imageUrl": "https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-08/220805-domestic-cat-mjf-1540-382ba2.jpg",
         "name": "Milen",
-        "breed": "ulichna",
+        "breed": "Bengal Cat",
         "description": "Very cute cat"
     }, {
-        "id": 3,
+        "id": "cat_3",
         "imageUrl": "https://images.pexels.com/photos/982300/pexels-photo-982300.jpeg?cs=srgb&dl=pexels-alena-koval-982300.jpg&fm=jpg",
         "name": "Ceco",
-        "breed": "persiiska",
+        "breed": "Bengal Cat",
         "description": "Very cute cat"
     }, {
-        "id": 4,
+        "id": "cat-4",
         "imageUrl": "https://i.redd.it/u22p6orprzo11.jpg",
-        "name": "Djamsu",
-        "breed": "persiiska",
+        "name": "Pesho",
+        "breed": "Bengal Cat",
         "description": "Very cute cat"
     }]
 }
@@ -127,6 +129,6 @@ module.exports = {
 
     'HANDLER_SETTINGS' : HANDLER_SETTINGS,
 
-    
+
     'DEFAULT_DATABASE_SETTINGS' : DEFAULT_DATABASE_SETTINGS,
 }
