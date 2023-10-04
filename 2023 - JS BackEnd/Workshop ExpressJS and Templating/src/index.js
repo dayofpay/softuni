@@ -21,7 +21,7 @@ app.use(express.static(path.resolve(__dirname,'public')));
 
 // ! Handlebars config !
 app.get('/',(req,res) => {
-    res.render("index"); // That will render the index.hbs file from views/index.hbs
+    res.render("index");
 });
 
 app.listen(PORT,() => {
