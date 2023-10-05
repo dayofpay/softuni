@@ -1,5 +1,9 @@
-const createController = (req,res) => {
-    res.render('create');
-}
+const router = require('express').Router();
 
-module.exports = createController;
+
+
+router.get('/create',(req,res) => {
+    res.render('create');
+})
+
+module.exports = router;
