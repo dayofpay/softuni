@@ -1,8 +1,13 @@
 const fs = require('fs');
+const querystring = require('querystring');
 
 const database = fs.readFileSync('./database/storage.json',{encoding:'utf-8'});
 const createCube = (cubeData) => {
-
+    const cubeDataDB = fs.readFileSync('./database/storage.json');
+    let cubeJson = JSON.parse(cubeDataDB);
+    cubeJson.push(cubeData);
+    console.log(true);
+    fs.writeFileSync('./database/storage.json', JSON.stringify(cubeJson));
 }
 
 
