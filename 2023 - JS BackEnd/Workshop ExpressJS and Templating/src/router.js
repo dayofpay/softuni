@@ -3,13 +3,13 @@ const router = require('express').Router();
 
 const controllerList = require('./controllers/controllers');
 
-router.get('/',controllerList.HOME_CONTROLLER);
+router.use(controllerList.HOME_CONTROLLER);
+router.use("/cubes", controllerList.CUBES_CONTROLLER);
 
-router.get('/create',controllerList.CREATE_CONTROLLER);
+router.get("*", (req, res) => {
+  res.redirect("/404");
+});
 
-router.get('/about',controllerList.ABOUT_CONTROLLER);
-
-router.get('*',controllerList.NON_EXISTING_ROUTE);
 
 
 module.exports = router;
