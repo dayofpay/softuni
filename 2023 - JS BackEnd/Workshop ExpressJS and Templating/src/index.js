@@ -9,23 +9,18 @@ const path = require('path');
 
 const handlebarsConfig_INIT = require('./config/handlebarsConfig');
 
+const controllers = require('./controllers/controllers');
 
 handlebarsConfig_INIT(app);
 
 app.use(express.static(path.resolve(__dirname,'public')));
 
 
-app.get('/',(req,res) => {
-    res.render("index");
-});
+app.get('/',controllers.HOME_CONTROLLER);
 
-app.get('/about',(req,res) => {
-    res.render('about');
-});
+app.get('/about',controllers.ABOUT_CONTROLLER);
 
-app.get('/create',(req,res) => {
-    res.render('create');
-});
+app.get('/create',controllers.CREATE_CONTROLLER);
 
 
 app.listen(PORT,() => {
