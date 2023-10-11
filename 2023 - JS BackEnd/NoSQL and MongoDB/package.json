@@ -1,0 +1,16 @@
+{
+  "name": "nosql-and-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.6.1",
+    "nodemon": "^3.0.1"
+  }
+}
