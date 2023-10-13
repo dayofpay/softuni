@@ -32,9 +32,14 @@ async function deleteUser(criteria){
 
     return await userModel.deleteOne(criteria);
 }
+
+async function updateUser(id,updateData){
+    await userModel.findByIdAndUpdate(id,{updateData});
+}
 module.exports = {
     createUser : createUser,
     listUsers : listUsers,
     getUser : getUser,
     deleteUser : deleteUser,
+    updateUser : updateUser,
 }
