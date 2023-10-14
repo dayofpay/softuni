@@ -1,17 +1,38 @@
 const mongoose = require('mongoose');
 
-        // Schema
-
+// Schema
 const cubeSchema = new mongoose.Schema({
-    'name' : String,
-    'description' : String,
-    'image_Url' : String,
-    'diff_level' : String,
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true,
+    maxlength: 255
+  },
+  image_url: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function (value) {
+        return /^https?:\/\/.+\..+/i.test(value);
+      },
+      message: 'Image URL must start with http:// or https://'
+    }
+  },
+  difficulty_level: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 6
+  },
+  accessories: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Accessories'
+  }
 });
 
-
-
-const Cube = mongoose.model('Cube',cubeSchema);
-
+const Cube = mongoose.model('Cube', cubeSchema);
 
 module.exports = Cube;
