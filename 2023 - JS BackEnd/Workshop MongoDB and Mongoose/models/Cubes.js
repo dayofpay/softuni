@@ -11,7 +11,7 @@ const cubeSchema = new mongoose.Schema({
     required: true,
     maxlength: 255
   },
-  image_url: {
+  image_Url: {
     type: String,
     required: true,
     validate: {
@@ -21,7 +21,7 @@ const cubeSchema = new mongoose.Schema({
       message: 'Image URL must start with http:// or https://'
     }
   },
-  difficulty_level: {
+  diff_level: {
     type: Number,
     required: true,
     min: 1,

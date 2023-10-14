@@ -17,16 +17,22 @@ router.get("/:cubeId/details", async (req, res) => {
     }
   });
 
-
-router.post('/create',(req,res) => {
-    const { name, description, imageUrl, difficultyLevel } = req.body;
-
-    cubeServices.createCube({
-        name,
-        description,
-        image_Url: imageUrl,  
-        diff_level: difficultyLevel, 
-    });
-    res.redirect('/');
-})
+  router.post('/create', async (req, res) => {
+    const { name, description, image_url, difficulty_level } = req.body;
+  
+    try {
+      await cubeServices.createCube({
+        name : name,
+        description : description,
+        image_Url : image_url,
+        diff_level : Number(difficulty_level),
+      });
+      res.redirect('/');
+    } catch (error) {
+      // Handle the error, e.g., send an error response or render an error page
+      console.error(error);
+      res.render("error", { errorMessage: "Failed to create a cube." });
+    }
+  });
+  
 module.exports = router;
