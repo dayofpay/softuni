@@ -1,5 +1,6 @@
 const cubeMethods = require('../database/methods');
 const Cube = require('../models/Cubes');
+const Accessory = require('../services/accesoryService');
 const createCube = (cubeData) => {
 
     // cubeMethods.createCube({
@@ -19,6 +20,8 @@ const listCubes = () => {
 
     return cubeMethods.listCubes();
 }
+const getSingleCube = (id) => Cube.findById(id).populate("accessories");
+
 
 const getCubeData = async (cubeId) => {
 
@@ -38,8 +41,10 @@ const getCubeData = async (cubeId) => {
 };
 
 
+
 module.exports = {
     createCube : createCube,
     listCubes : listCubes,
     getCubeData : getCubeData,
+    getSingleCube : getSingleCube,
 }
