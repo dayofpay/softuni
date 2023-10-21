@@ -15,7 +15,11 @@ const createCube = (cubeData) => {
     })
 }
 
+const updateCube = async (updateData) => {
+    const cube = updateData.id;
 
+    await Cube.findByIdAndUpdate(cube,updateData).exec();
+}
 const listCubes = () => {
 
     return cubeMethods.listCubes();
@@ -47,4 +51,5 @@ module.exports = {
     listCubes : listCubes,
     getCubeData : getCubeData,
     getSingleCube : getSingleCube,
+    updateCube : updateCube,
 }

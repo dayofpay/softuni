@@ -5,7 +5,9 @@ const router = require('express').Router();
 
 
 router.get('/create',(req,res) => {
-    res.render('create');
+
+    isAuth(req,res,next);
+    res.render('cubes/create');
 })
 
 module.exports = router;

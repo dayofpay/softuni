@@ -2,7 +2,8 @@ const router = require("express").Router();
 
 const cubeServices = require('../services/cubeServices');
 const Cube = require('../models/Cubes');
-const aboutData = require('../database/methods')
+const aboutData = require('../database/methods');
+const {isAuth} = require('../middlewares/auth')
 router.get('/', async (req, res) => {
 
   const {
@@ -30,7 +31,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get("/about", async (req, res) => {
+router.get("/about", async (req, res,next) => {
   let data = await aboutData.getAbout();
   const mapped = JSON.stringify(data);
   res.render("about", {
@@ -39,6 +40,7 @@ router.get("/about", async (req, res) => {
 });
 
 router.get('/create', (req, res) => {
-  res.render('create');
+  isAuth(req,res);
+  res.render('cubes/create');
 })
 module.exports = router;

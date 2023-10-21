@@ -7,6 +7,7 @@ async function createCube(cubeData) {
         description: cubeData.description,
         image_Url: cubeData.image_Url,
         diff_level: cubeData.diff_level,
+        creatorId: cubeData.creatorId
     });
     console.log('Successfully created cube:', cubeData);
 }
