@@ -1,0 +1,75 @@
+        <section id="editPage">
+            <form id='editForm' action="/electronic/edit/{{electronicData._id}}" method="PUT">
+                <input type="hidden" name="_method" value="PUT">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{electronicData.name}}">
+
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type" value="{{electronicData.type}}">
+
+                <label for="production">Year of Production:</label>
+                <input type="number" id="production" name="production" value="{{electronicData.production}}">
+
+                <label for="exploitation">Years of Exploitation:</label>
+                <input type="number" id="exploitation" name="exploitation" value="{{electronicData.exploitation}}">
+
+                <label for="damages">Damages:</label>
+                <input type="text" id="damages" name="damages" value="{{electronicData.damages}}">
+
+                <label for="image">Image:</label>
+                <input type="text" id="image" name="image" value="{{electronicData.image}}">
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" value="{{electronicData.price}}">
+
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" value="{{electronicData.description}}">                
+
+                <input type="submit" class="edit" value="Edit Offer">
+            </form>
+        </section>
+
+<script>
+  document.getElementById('editForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    if (confirm('Are you sure you want to edit this electronic item?')) {
+      const formElements = this.elements;
+
+      const urlParts = window.location.href.split('/');
+      const electronicId = urlParts[urlParts.length - 1];
+
+      const formData = {
+        name: formElements.name.value,
+        type: formElements.type.value,
+        production: formElements.production.value,
+        exploitation: formElements.exploitation.value,
+        damages: formElements.damages.value,
+        image: formElements.image.value,
+        price: formElements.price.value,
+        description: formElements.description.value,
+      };
+
+      fetch(`/electronic/edit/${electronicId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+            console.log(response)
+          if (response.ok) {
+            alert('Electronic item updated successfully');
+
+            window.location.href = '/electronic/details/' + electronicId;
+          } else {
+            console.error('Error updating electronic item');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  });
+</script>

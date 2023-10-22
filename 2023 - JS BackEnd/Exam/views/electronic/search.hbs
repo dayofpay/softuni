@@ -1,0 +1,27 @@
+<section class="search">
+  <h1>Search</h1>
+
+  <form class="search-form" action="/electronic/search" method="">
+    <input type="text" class="search-name" name="name" placeholder="Search Name...">
+    <input type="text" class="search-type" name="type" placeholder="Search Type...">
+    <button type="submit" class="btn-search">Search</button>
+  </form>
+
+  {{#if noMatchFound}}
+    <div class="no-match">
+      <p>No match was found!</p>
+    </div>
+  {{else}}
+    {{#each electronicData}}
+      <div class="search-result">
+        <div class="search-list">
+          <a href="/electronic/details/{{_id}}" class="added-electronics-in-market">
+            <img src="{{image}}" class="picture-added-electronics">
+            <h3>{{name}}</h3>
+            <span>Price: ${{price}}</span>
+          </a>
+        </div>
+      </div>
+    {{/each}}
+  {{/if}}
+</section>

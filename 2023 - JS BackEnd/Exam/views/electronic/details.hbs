@@ -1,0 +1,102 @@
+        <section id="detailsPage">
+            <div id="detailsInfo">
+                <h1>Name: {{electronicData.name}}</h1>
+                <div class="info"><img src="{{electronicData.image}}"></div>
+
+                <div class="info">
+                    <h3>Type: {{electronicData.type}}</h3>
+                    <h3>Year of Production: {{electronicData.production}}</h3>
+                    <h3>Years of Exploitation: {{electronicData.exploitation}}</h3>
+                    <h3>Damages: {{electronicData.damages}}</h3>
+                    <h3>Description: {{electronicData.description}}</h3>
+                    <h2>Price: ${{electronicData.price}}</h2>
+                </div>
+
+                <!--If there is user logged in-->
+
+                {{#if isAuthenticated}}
+                <div class="buttons">
+
+
+                    {{#if isOwner}}
+                    <a href="/electronic/edit/{{electronicData._id}}" class="edit-btn">Edit</a>
+                    <a id="delete-link" href="/electronic/delete/{{electronicData._id}}" class="delete-btn">Delete</a>
+
+                    <script>
+                        document.getElementById('delete-link').addEventListener('click', function (event) {
+                            event.preventDefault();
+                            // todo animation
+                            if (confirm('Are you sure you want to delete this electronic ??')) {
+
+                                const urlParts = this.href.split('/');
+                                const electronicId = urlParts[urlParts.length - 1];
+
+                                fetch(`/electronic/delete/${electronicId}`, {
+                                        method: 'DELETE',
+                                    })
+                                    .then((response) => {
+                                        if (response.ok) {
+
+                                            window.location.href = '/';
+                                        } else {
+                                            console.error('Error deleting electronic item');
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                    });
+                            }
+                        });
+                    </script>
+
+
+                    {{else}}
+
+                    {{/if}}
+
+
+                    {{#if hasPurchased}}
+                    <p><span class="buy">Thank You For Your Purchase</span></p>
+                    {{/if}}
+
+                    {{#unless hasPurchased}}
+                                        <!--If user is not owner of the toy post-->
+                                        {{#unless isOwner}}
+                                        
+                                                            <a href="/electronic/buy/{{electronicData._id}}" id="buy-link" class="buy-btn">Buy</a>
+                                                                                <script>
+                        document.getElementById('buy-link').addEventListener('click', function (event) {
+                            event.preventDefault();
+
+                            if (confirm('Are you sure you want to buy this electronic item?')) {
+                                const urlParts = this.href.split('/');
+                                const electronicId = urlParts[urlParts.length - 1];
+
+                                fetch(`/electronic/buy/${electronicId}`, {
+                                        method: 'POST',
+                                    })
+                                    .then((response) => {
+                                        if (response.ok) {
+
+                                            alert('Thank you for your purchase');
+                                            window.location
+                                        .reload();
+                                        } else {
+                                            console.error('Error buying electronic item');
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                    });
+                            }
+                        });
+                    </script>
+                                                            {{/unless}}
+
+                    {{/unless}}
+
+                </div>
+                {{/if}}
+
+            </div>
+        </section>
