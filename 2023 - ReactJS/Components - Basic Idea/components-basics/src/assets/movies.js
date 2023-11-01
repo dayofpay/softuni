@@ -2,15 +2,18 @@ export default [
     
         {
           title : 'The Matrix',
-          description : 'Movie'
+          description : 'Movie',
+          rate : 10,
         },
         {
           title : 'Man of steel',
-          description : 'Movie'
+          description : 'Movie',
+          rate : 8,
         },
         {
           title : 'Harry potter',
-          description : 'Movie'
+          description : 'Movie',
+          rate : 7,
         },
       
 ]
