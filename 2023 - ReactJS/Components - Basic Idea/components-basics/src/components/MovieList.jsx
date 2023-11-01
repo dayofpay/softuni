@@ -1,5 +1,4 @@
 import Movie from "./Movie";
-
 export default function MovieList(props){
     console.log(props);
 return (
