@@ -4,6 +4,7 @@ import MovieList from './components/MovieList'
 import movies from './assets/movies'
 import Heading from './components/TestHeading'
 import Timer from './components/Timer'
+import Counter from './components/Counter'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,6 +17,8 @@ function App() {
       <Timer startTime={20} endTime={25}/>
 
       <MovieList headingText="Movie List" movieList={movies} secondaryText="Secondary Text"/>
+
+      <Counter/>
      </div>
     </>
   )
