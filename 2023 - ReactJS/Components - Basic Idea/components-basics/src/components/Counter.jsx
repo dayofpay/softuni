@@ -8,6 +8,14 @@ export default function Counter(props){
         setCount(count+1);
     }
 
+    const decrementCounter = () => {
+        setCount(count-1);
+    }
+
+    const resetCounter = () => {
+        setCount(0);
+    }
+
     return (
         <div>
             <h1>Counter</h1>
@@ -15,6 +23,8 @@ export default function Counter(props){
             <p>Count : {count}</p>
 
             <button onClick={incrementCounter}>+</button>
+            <button onClick={resetCounter}>Reset</button>
+            <button onClick={decrementCounter}>-</button>
         </div>
     )
 }
