@@ -9,7 +9,7 @@ function App() {
   return (
     <>
      <div>
-     <Heading>Dynamic React Application</Heading>
+      <Heading>Dynamic React Application</Heading>
 
       <MovieList headingText="Movie List" movieList={movies} secondaryText="Secondary Text"/>
      </div>
