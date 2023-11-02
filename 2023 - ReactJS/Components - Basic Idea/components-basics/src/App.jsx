@@ -11,7 +11,7 @@ function App() {
     <>
      <div>
       <Heading>Dynamic React Application</Heading>
-      <Timer/>
+      <Timer startTime={5} endTime={10}/>
       <MovieList headingText="Movie List" movieList={movies} secondaryText="Secondary Text"/>
      </div>
     </>

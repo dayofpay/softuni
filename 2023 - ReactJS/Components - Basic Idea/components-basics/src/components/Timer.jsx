@@ -3,16 +3,20 @@ import { useState } from "react"
 export default function Timer(props){
 
 
-    const [time,setTime] = useState(0); // We will pass initial state ( Default Value )
+    const [time,setTime] = useState(props.startTime); // We will pass initial state ( Default Value )
 
 
-    console.log(`Current time is = ${time}`);
 
 
-    setTimeout(() => {
-        setTime(time+1);
-        console.log(`Current time is = ${time}`);
-    }, 1000);
+    if(time < props.endTime){
+        setTimeout(() => {
+            setTime(time+1);
+    
+        }, 1000);
+    }
+    else{
+        console.log(`Timer limit reached !`);
+    }
     return (
      <div>
         <h3>Timer</h3>
