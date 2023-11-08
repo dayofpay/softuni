@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import Header from "./components/Header"
+import Add from "./components/Add"
+import TodoItem from "./components/TodoItem"
+import { useEffect,useState } from "react";
+import Footer from "./components/Footer";
+import TableHeader from "./components/TableHeader";
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [todos,addTodo] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3030/jsonstore/todos').then(response => response.json())
+    .then(data => {
+      const result = Object.values(data);
+      console.log(result);
+      addTodo(result);
+    }).catch(err => {
+      console.error(err);
+    })
+  },[])
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+<div>
+
+  {/* <!-- Navigation header --> */}
+  <Header/>
+  {/* <!-- Main content --> */}
+  <main className="main">
+
+    {/* <!-- Section container --> */}
+    <section className="todo-list-container">
+      <h1>Todo List</h1>
+
+
+      {/* Add new */}
+      <Add/>
+      <div className="table-wrapper">
+
+        {/* <!-- Todo list table --> */}
+        <table className="table">
+          <TableHeader/>
+          <tbody>
+
+            {/* <!-- Todo item --> */}
+            {todos.map(todoItem => <TodoItem text={todoItem.text} isCompleted={todoItem.isCompleted} id={todoItem._id} key={todoItem._id}/>)}
+          </tbody>
+        </table>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </section>
+  </main>
+
+  {/* <!-- Footer --> */}
+  <Footer/>
+</div>
   )
+  
 }
 
 export default App
