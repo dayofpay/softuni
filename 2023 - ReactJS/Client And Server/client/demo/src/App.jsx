@@ -6,18 +6,36 @@ import Footer from "./components/Footer";
 import TableHeader from "./components/TableHeader";
 function App() {
 
-  const [todos,addTodo] = useState([]);
+  const [todos,setTodos] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3030/jsonstore/todos').then(response => response.json())
     .then(data => {
       const result = Object.values(data);
-      console.log(result);
-      addTodo(result);
+      setTodos(result);
     }).catch(err => {
       console.error(err);
     })
   },[])
+
+  const changeStatusHandler = (todoId) => {
+    console.log(`Changed status of todo id ${todoId}`);
+    setTodos(todos => todos.map((todo) => todo._id === todoId ? {
+      ...todo,
+      isCompleted: !todo.isCompleted
+    } : {
+      ...todo
+    }));
+
+    // setTodos(todos => todos.map((todo) => todo._id === todoId ? {
+    //   ...todo,
+    //   isCompleted: !todo.isCompleted
+    // } : {
+    //   ...todo,
+    //   isCompleted: todo.isCompleted
+    // }));
+    // setTodos(oldTodos => oldTodos.map((todo => todo._id === todoId ? {...todo,isCompleted: !todo.isCompleted} : todo.isCompleted)));
+  }
   return (
 <div>
 
@@ -41,7 +59,7 @@ function App() {
           <tbody>
 
             {/* <!-- Todo item --> */}
-            {todos.map(todoItem => <TodoItem text={todoItem.text} isCompleted={todoItem.isCompleted} id={todoItem._id} key={todoItem._id}/>)}
+            {todos.map(todoItem => <TodoItem text={todoItem.text} isCompleted={todoItem.isCompleted} id={todoItem._id} key={todoItem._id} changeStatusHandler={changeStatusHandler}/>)}
           </tbody>
         </table>
       </div>
