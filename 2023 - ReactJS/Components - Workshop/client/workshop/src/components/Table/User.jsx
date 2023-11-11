@@ -1,4 +1,12 @@
+import Edit from "../Modals/Edit";
+import { useState } from "react";
 export default function User(props){
+
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const editBtn = () => {
+    setShowEditModal(true);
+  }
 return(
 
   <tr>
@@ -13,8 +21,8 @@ return(
     <td>{props.createdAt}</td>
 
     <td className="actions">
-      <button className="btn edit-btn" title="Edit">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
+    <button className="btn edit-btn" title="Edit" id={props.id} onClick={editBtn}>
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
           className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 532 512">
           <path fill="currentColor"
@@ -38,6 +46,9 @@ return(
           </path>
         </svg>
       </button>
+      {showEditModal && (
+        <Edit data={props.id} onClose={() => setShowEditModal(false)} />
+      )}
     </td>
   </tr>
 

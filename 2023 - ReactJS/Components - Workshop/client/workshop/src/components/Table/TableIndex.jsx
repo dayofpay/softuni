@@ -14,15 +14,18 @@ export default function Table(){
         )
     },[])
     return (
+        <>
         <div className="table-wrapper">
         <table className="table">
             <Head/>
             <tbody>
             {users.map((user,index) =>
-             <User firstName={user.firstName} lastName={user.lastName} email={user.email} phoneNumber={user.phoneNumber} createdAt={user.createdAt} key={index}/>)}
+             <User id={user._id} firstName={user.firstName} lastName={user.lastName} email={user.email} phoneNumber={user.phoneNumber} createdAt={user.createdAt} key={index}/>)}
             </tbody>
             
         </table>
         </div>
+        <button className="btn-add btn">Add new user</button>
+        </>
     )
 }
