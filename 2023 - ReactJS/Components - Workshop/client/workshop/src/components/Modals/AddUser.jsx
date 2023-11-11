@@ -1,12 +1,29 @@
 import { useEffect, useState } from "react";
-import { updateUser } from "../../services/user";
+import { createUser } from "../../services/user";
 import { useForm } from "react-hook-form";
-export default function Edit(props) {
-  const [user, setUser] = useState([]);
+export default function AddUser(props) {
+
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
     console.log(data);
-    updateUser(data._id,data)
+    const formattedData = {
+
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        imageUrl: data.imageUrl,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        address: {
+            country: data['address']['city'],
+            city: data['address']['city'],
+            street: data['address']['street'],
+            streetNumber: data['address']['streetNumber'],
+        },
+    };
+
+    createUser(formattedData);
   }
   const handleCloseModal = () => {
     if (props.onClose) {
@@ -14,19 +31,6 @@ export default function Edit(props) {
     }
   };
 
-  useEffect(() => {
-    fetch(`http://localhost:3030/jsonstore/users/${props.data}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const result = data;
-        setUser(result);
-      });
-  }, [props.data]);
-
-  if (user.length === 0) {
-    return <div className="spinner"></div>;
-  }
-  console.log(user);
   return(
     <div className="overlay">
     <div className="backdrop"></div>
@@ -53,8 +57,8 @@ export default function Edit(props) {
                  id="firstName"
                  name="firstName"
                  type="text"
-                 defaultValue={user?.firstName}
-                 {...register("firstName", { required: false })} 
+
+                 {...register("firstName", { required: true })} 
 />                  </div>
             </div>
             <div className="form-group">
@@ -64,8 +68,8 @@ export default function Edit(props) {
                 <input id="lastName"
                  name="lastName"
                  type="text"
-                 defaultValue={user?.lastName}
-                 {...register("lastName", { required: false })} 
+
+                 {...register("lastName", { required: true })} 
                   />
               </div>
             </div>
@@ -80,8 +84,8 @@ export default function Edit(props) {
                  id="email" 
                  name="email" 
                  type="text"
-                 defaultValue={user?.email}
-                 {...register('email', { required: false })} 
+
+                 {...register('email', { required: true })} 
                  />
               </div>
             </div>
@@ -92,8 +96,8 @@ export default function Edit(props) {
                 <input id="phoneNumber" 
                 name="phoneNumber" 
                 type="text"
-                defaultValue={user?.phoneNumber}
-                {...register('phoneNumber', { required: false })}  
+
+                {...register('phoneNumber', { required: true })}  
                  />
               </div>
             </div>
@@ -107,8 +111,8 @@ export default function Edit(props) {
               id="imageUrl" 
               name="imageUrl" 
               type="text" 
-              defaultValue={user?.imageUrl}
-              {...register('imageUrl', { required: false })}
+
+              {...register('imageUrl', { required: true })}
               />
             </div>
           </div>
@@ -121,8 +125,8 @@ export default function Edit(props) {
                 <input id="country" 
                 name="country" 
                 type="text" 
-                defaultValue={user?.address.country} 
-                {...register('address.country', { required: false })} 
+
+                {...register('address.country', { required: true })} 
                 />
 
               </div>
@@ -134,8 +138,8 @@ export default function Edit(props) {
                 <input id="city" 
                 name="city" 
                 type="text" 
-                defaultValue={user?.address.city}
-                {...register('address.city', { required: false })} 
+
+                {...register('address.city', { required: true })} 
                 />
               </div>
             </div>
@@ -149,8 +153,8 @@ export default function Edit(props) {
                 <input id="street" 
                 name="street" 
                 type="text" 
-                defaultValue={user?.address.street}
-                {...register('address.street', { required: false })} 
+
+                {...register('address.street', { required: true })} 
                 />
               </div>
             </div>
@@ -161,19 +165,11 @@ export default function Edit(props) {
                 <input id="streetNumber" 
                 name="streetNumber" 
                 type="text"
-                defaultValue={user?.address.streetNumber}
-                {...register('address.streetNumber', { required: false })} 
+
+                {...register('address.streetNumber', { required: true })} 
                  />
               </div>
             </div>
-
-
-                <input id="_id" 
-                name="_id" 
-                hidden={true}
-                defaultValue={user?._id}
-                {...register('_id', { required: false })} 
-                 />
           </div>
           <div id="form-actions">
             <button id="action-save" className="btn" type="submit">Save</button>

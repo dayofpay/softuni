@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import Head from "./Head";
 import User from "./User";
+import AddUser from "../Modals/AddUser";
 
 export default function Table() {
   const [users, setUser] = useState([]);
   const [error, setError] = useState(null);
+  const [showAddUserModal, setShowAddUserModal] = useState(false);
 
+  const addBtn = () => {
+    setShowAddUserModal(true);
+  }
   useEffect(() => {
     fetch('http://localhost:3030/jsonstore/users/')
       .then((response) => response.json())
@@ -61,7 +66,11 @@ export default function Table() {
           </table>
         </div>
       )}
-      <button className="btn-add btn">Add new user</button>
+
+      <button className="btn-add btn" onClick={addBtn}>Add new user</button>
+      {showAddUserModal && (
+        <AddUser onClose={() => setShowAddUserModal(false)} />
+      )}
     </>
   );
 }

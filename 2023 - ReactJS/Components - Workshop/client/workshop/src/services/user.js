@@ -1,6 +1,31 @@
-export const createUser = () => {
-    console.log(true);
+export async function createUser(data) {
+    try {
+
+
+
+        const apiUrl = "http://localhost:3030/jsonstore/users/";
+
+        const request = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (request.ok) {
+            const responseData = await request.json();
+            return responseData;
+        } else {
+            console.log('Failed creating user', request.status, request.statusText);
+            return null;
+        }
+    } catch (err) {
+        console.error('Error:', err);
+        return null;
+    }
 }
+
 
 
 export async function updateUser(id, userData) {
