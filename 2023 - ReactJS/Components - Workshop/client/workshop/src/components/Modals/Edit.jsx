@@ -33,7 +33,7 @@ export default function Edit(props) {
     <div className="modal">
       <div className="user-container">
         <header className="headers">
-          <h2>Edit User/Add User</h2>
+          <h2 style={{color:'black'}}>Edit User/Add User</h2>
           <button className="btn close" onClick={handleCloseModal}>
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
               className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -46,7 +46,7 @@ export default function Edit(props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="firstName">First name</label>
+              <label htmlFor="firstName" style={{color:'black'}}>First name</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-user"></i></span>
                 <input
@@ -58,7 +58,7 @@ export default function Edit(props) {
 />                  </div>
             </div>
             <div className="form-group">
-              <label htmlFor="lastName">Last name</label>
+              <label htmlFor="lastName" style={{color:'black'}}>Last name</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-user"></i></span>
                 <input id="lastName"
@@ -73,7 +73,7 @@ export default function Edit(props) {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" style={{color:'black'}}>Email</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-envelope"></i></span>
                 <input
@@ -86,7 +86,7 @@ export default function Edit(props) {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="phoneNumber">Phone number</label>
+              <label htmlFor="phoneNumber" style={{color:'black'}}>Phone number</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-phone"></i></span>
                 <input id="phoneNumber" 
@@ -100,7 +100,7 @@ export default function Edit(props) {
           </div>
 
           <div className="form-group long-line">
-            <label htmlFor="imageUrl">Image Url</label>
+            <label htmlFor="imageUrl" style={{color:'black'}}>Image Url</label>
             <div className="input-wrapper">
               <span><i className="fa-solid fa-image"></i></span>
               <input 
@@ -115,7 +115,7 @@ export default function Edit(props) {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="country">Country</label>
+              <label htmlFor="country" style={{color:'black'}}>Country</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-map"></i></span>
                 <input id="country" 
@@ -128,7 +128,7 @@ export default function Edit(props) {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="city">City</label>
+              <label htmlFor="city" style={{color:'black'}}>City</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-city"></i></span>
                 <input id="city" 
@@ -143,7 +143,7 @@ export default function Edit(props) {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="street">Street</label>
+              <label htmlFor="street" style={{color:'black'}}>Street</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-map"></i></span>
                 <input id="street" 
@@ -155,7 +155,7 @@ export default function Edit(props) {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="streetNumber">Street number</label>
+              <label htmlFor="streetNumber" style={{color:'black'}}>Street number</label>
               <div className="input-wrapper">
                 <span><i className="fa-solid fa-house-chimney"></i></span>
                 <input id="streetNumber" 
@@ -179,7 +179,7 @@ export default function Edit(props) {
             <button id="action-save" className="btn" type="submit">Save</button>
             <button id="action-cancel" className="btn" type="button" onClick={handleCloseModal}>
               Cancel
-            </button>
+            </button> 
           </div>
         </form>
       </div>

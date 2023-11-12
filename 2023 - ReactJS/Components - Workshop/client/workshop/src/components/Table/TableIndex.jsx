@@ -62,9 +62,13 @@ export default function Table() {
                   key={index}
                 />
               ))}
+
+              
             </tbody>
           </table>
+          
         </div>
+        
       )}
 
       <button className="btn-add btn" onClick={addBtn}>Add new user</button>

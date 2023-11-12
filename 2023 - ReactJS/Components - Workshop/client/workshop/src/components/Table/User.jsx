@@ -1,11 +1,17 @@
 import Edit from "../Modals/Edit";
 import { useState } from "react";
+import Info from "../Modals/Info";
 export default function User(props){
 
   const [showEditModal, setShowEditModal] = useState(false);
 
+  const [showInfoModal,setShowInfoModal] = useState(false);
   const editBtn = () => {
     setShowEditModal(true);
+  }
+
+  const infoBtn = () => {
+    setShowInfoModal(true)
   }
 return(
 
@@ -14,13 +20,13 @@ return(
       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
         alt="Peter's profile" className="image" />
     </td>
-    <td>{props.firstName}</td>
-    <td>{props.lastName}</td>
-    <td>{props.email}</td>
-    <td>{props.phoneNumber}</td>
-    <td>{props.createdAt}</td>
+    <th>{props.firstName}</th>
+    <th>{props.lastName}</th>
+    <th>{props.email}</th>
+    <th>{props.phoneNumber}</th>
+    <th>{props.createdAt}</th>
 
-    <td className="actions">
+    <th className="actions">
     <button className="btn edit-btn" title="Edit" id={props.id} onClick={editBtn}>
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
           className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +44,7 @@ return(
           </path>
         </svg>
       </button>
-      <button className="btn info-btn" title="Info">
+      <button className="btn info-btn" title="Info" onClick={infoBtn}>
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" className="svg-inline--fa fa-info"
           role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-150 0 512 612">
           <path fill="currentColor"
@@ -49,7 +55,11 @@ return(
       {showEditModal && (
         <Edit data={props.id} onClose={() => setShowEditModal(false)} />
       )}
-    </td>
+      {showInfoModal && (
+        <Info data={props} onClose={() => setShowInfoModal(false)}/>
+      )}
+
+    </th>
   </tr>
 
 )
