@@ -1,10 +1,29 @@
+import { useEffect , useState} from "react";
+import { getUserInfo } from "../../services/user";
+
 export default function Info(props){
 
+
+    const [userData,setUserData] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:3030/jsonstore/users/${props.data}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const result = data;
+          setUserData(result);
+        });
+    },[props.data])
     const handleCloseModal = () => {
         if (props.onClose) {
           props.onClose();
         }
       };
+
+      if (userData.length === 0) {
+        return <div className="spinner"></div>;
+      }
+      console.log(userData);
     return (
         <div className="overlay">
       <div className="backdrop"></div>
@@ -23,24 +42,24 @@ export default function Info(props){
           </header>
           <div className="content">
             <div className="image-container">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+              <img src={userData?.['imageUrl']} alt=""
                 className="image" />
             </div>
             <div className="user-details">
-              <p style={{color: 'black'}}>User Id: <strong>62bb0c0eda039e2fdccba57b</strong></p>
+              <p style={{color: 'black'}}>User Id: <strong>{userData?.["_id"]}</strong></p>
               <p style={{color: 'black'}}>
                 Full Name:
                 <strong> Peter Johnson </strong>
               </p>
-              <p style={{color: 'black'}}>Email: <strong>peter@abv.bg</strong></p>
-              <p style={{color: 'black'}}>Phone Number: <strong>0812345678</strong></p>
+              <p style={{color: 'black'}}>Email: <strong>{userData?.["email"]}</strong></p>
+              <p style={{color: 'black'}}>Phone Number: <strong>{userData?.["phoneNumber"]}</strong></p>
               <p style={{color: 'black'}}>
                 Address:
-                <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+                <strong> {userData?.["address"]["street"]} </strong>
               </p>
 
-              <p style={{color: 'black'}}>Created on: <strong>Wednesday, June 28, 2022</strong></p>
-              <p style={{color: 'black'}}>Modified on: <strong>Thursday, June 29, 2022</strong></p>
+              <p style={{color: 'black'}}>Created on: <strong>{userData?.["createdAt"]}</strong></p>
+              <p style={{color: 'black'}}>Modified on: <strong>{userData?.["updatedAt"]}</strong></p>
             </div>
           </div>
         </div>

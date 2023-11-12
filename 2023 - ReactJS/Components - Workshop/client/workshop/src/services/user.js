@@ -52,3 +52,27 @@ export async function updateUser(id, userData) {
     }
 }
 
+export async function getUserInfo(id){
+    try{
+        const url = `http://localhost:3030/jsonstore/users/${id}`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return await data;
+        } else {
+            console.log('get user info failed:', response.status, response.statusText);
+            return null;
+        }
+    }catch(err){
+        console.error('Error',err);
+
+        return null;
+    }
+}
+

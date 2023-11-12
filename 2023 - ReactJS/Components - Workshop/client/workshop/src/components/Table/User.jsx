@@ -56,7 +56,7 @@ return(
         <Edit data={props.id} onClose={() => setShowEditModal(false)} />
       )}
       {showInfoModal && (
-        <Info data={props} onClose={() => setShowInfoModal(false)}/>
+        <Info data={props.id} onClose={() => setShowInfoModal(false)}/>
       )}
 
     </th>
