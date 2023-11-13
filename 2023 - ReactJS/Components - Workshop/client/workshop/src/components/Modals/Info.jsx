@@ -25,7 +25,7 @@ export default function Info(props){
       console.log(userData);
     return (
         <div className="overlay">
-      <div className="backdrop"></div>
+      <div className="backdrop" onClick={handleCloseModal}></div>
       <div className="modal">
         <div className="detail-container">
           <header className="headers">

@@ -29,7 +29,7 @@ export default function Edit(props) {
   console.log(user);
   return(
     <div className="overlay">
-    <div className="backdrop"></div>
+    <div className="backdrop" onClick={handleCloseModal}></div>
     <div className="modal">
       <div className="user-container">
         <header className="headers">

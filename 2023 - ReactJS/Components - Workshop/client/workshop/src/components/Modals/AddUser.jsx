@@ -33,7 +33,7 @@ export default function AddUser(props) {
 
   return(
     <div className="overlay">
-    <div className="backdrop"></div>
+    <div className="backdrop" onClick={handleCloseModal}></div>
     <div className="modal">
       <div className="user-container">
         <header className="headers">

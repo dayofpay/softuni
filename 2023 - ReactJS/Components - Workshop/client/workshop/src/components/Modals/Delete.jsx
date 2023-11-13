@@ -22,7 +22,7 @@ export default function Delete(props){
     }
     return (
         <div className="overlay">
-            <div className="backdrop"></div>
+            <div className="backdrop" onClick={handleCloseModal}></div>
             <div className="modal">
                 <div className="confirm-container">
                     <header className="headers">
