@@ -76,3 +76,25 @@ export async function getUserInfo(id){
     }
 }
 
+
+export async function deleteUser(id){
+
+    try{
+        const url = `http://localhost:3030/jsonstore/users/${id}`;
+
+        const request = await fetch(url,{
+            method: 'DELETE',
+
+        });
+
+        if(request.ok){
+            console.log('Successfully deleted user !');
+        }
+        else{
+            console.log('Failed deleting user !',request.status,request.statusText);
+        }
+    }catch(err){
+        console.error('Error while trying to delete user id: ' + id, err);
+    }
+}
+

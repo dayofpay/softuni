@@ -1,15 +1,19 @@
 import Edit from "../Modals/Edit";
 import { useState,useEffect } from "react";
 import Info from "../Modals/Info";
+import Delete from "../Modals/Delete";
 export default function User(props){
 
   const [showEditModal, setShowEditModal] = useState(false);
 
   const [showInfoModal,setShowInfoModal] = useState(false);
 
+  const [showDeleteModal,setShowDeleteModal] = useState(false);
+
+
   const [imageUrl, setImageUrl] = useState('');
 
-  
+
   useEffect(() => {
     const fetchUserPicture = async (id) => {
       try {
@@ -34,6 +38,10 @@ export default function User(props){
     setShowInfoModal(true)
   }
 
+  const deleteBtn = () => {
+    setShowDeleteModal(true);
+  }
+ 
   
 return(
 
@@ -58,7 +66,7 @@ return(
           </path>
         </svg>
       </button>
-      <button className="btn delete-btn" title="Delete">
+      <button className="btn delete-btn" title="Delete" onClick={deleteBtn}>
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
           className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
           <path fill="currentColor"
@@ -79,6 +87,10 @@ return(
       )}
       {showInfoModal && (
         <Info data={props.id} onClose={() => setShowInfoModal(false)}/>
+      )}
+
+      {showDeleteModal && (
+        <Delete data={props.id} onClose={() => setShowDeleteModal(false)} />
       )}
 
     </th>

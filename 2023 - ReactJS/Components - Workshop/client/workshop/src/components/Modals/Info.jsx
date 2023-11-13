@@ -1,6 +1,5 @@
 import { useEffect , useState} from "react";
 import { getUserInfo } from "../../services/user";
-
 export default function Info(props){
 
 
