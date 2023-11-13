@@ -1,11 +1,31 @@
 import Edit from "../Modals/Edit";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Info from "../Modals/Info";
 export default function User(props){
 
   const [showEditModal, setShowEditModal] = useState(false);
 
   const [showInfoModal,setShowInfoModal] = useState(false);
+
+  const [imageUrl, setImageUrl] = useState('');
+
+  
+  useEffect(() => {
+    const fetchUserPicture = async (id) => {
+      try {
+        const url = `http://localhost:3030/jsonstore/users/${id}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        const userImageUrl = data.imageUrl;
+        setImageUrl(userImageUrl);
+      } catch (err) {
+        console.error('Error', err);
+      }
+    };
+
+    fetchUserPicture(props.id);
+  }, [props.id]);
+  
   const editBtn = () => {
     setShowEditModal(true);
   }
@@ -13,12 +33,14 @@ export default function User(props){
   const infoBtn = () => {
     setShowInfoModal(true)
   }
+
+  
 return(
 
   <tr>
     <td>
-      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-        alt="Peter's profile" className="image" />
+      <img src={imageUrl}
+        alt={props.firstName + "'s profile picture"} className="image" />
     </td>
     <th>{props.firstName}</th>
     <th>{props.lastName}</th>
