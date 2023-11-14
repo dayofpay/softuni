@@ -47,7 +47,7 @@ export default function Table() {
         </div>
         </div>
       ) : (
-        <div className="table-wrapper">
+        <div className="table-wrapper" datatype="test">
           <table className="table">
             <Head />
             <tbody>
