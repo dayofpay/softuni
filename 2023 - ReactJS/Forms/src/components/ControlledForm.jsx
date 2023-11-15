@@ -9,6 +9,7 @@ const FORM_DATA = {
     username : '',
     password : '',
     age : '',
+    gender : 'm',
 }
 export default function ControlledForm(){
     const [formValues,setFormValues] = useState(FORM_DATA)
@@ -65,6 +66,13 @@ export default function ControlledForm(){
             <div>
                 <label htmlFor="age">Age:</label>
                 <input type="number" name={FORM_KEYS.age} id={FORM_KEYS.age} value={formValues.age} onChange={changeHandler} />
+            </div>
+            <div>
+                <label htmlFor="gender">Gender:</label>
+                <select name="gender" id="gender">
+                <option value='m' selected={FORM_DATA.gender === 'm'}>Male</option>
+                <option value='f' selected={FORM_DATA.gender === 'f'}>Female</option>
+                </select>
             </div>
 
             <button type="submit">Login</button>
