@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const FORM_KEYS = {
+    username : 'username',
+    password : 'password',
+    age : 'age',
+}
 export default function ControlledForm(){
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
@@ -35,16 +40,16 @@ export default function ControlledForm(){
         <form onSubmit={submitHandler} method="POST">
             <div>
                 <label htmlFor="username">Username:</label>
-                <input type="text" name="username" id="username" value={username} onChange={usernameChangeHandler}/>
+                <input type="text" name={FORM_KEYS.username} id={FORM_KEYS.username} value={username} onChange={usernameChangeHandler}/>
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" id="password" value={password} onChange={passwordChangeHandler} />
+                <input type="password" name={FORM_KEYS.password} id={FORM_KEYS.password} value={password} onChange={passwordChangeHandler} />
             </div>
 
             <div>
                 <label htmlFor="age">Age:</label>
-                <input type="number" name="age" id="age" value={age} onChange={ageChangeHandler} />
+                <input type="number" name={FORM_KEYS.age} id={FORM_KEYS.age} value={age} onChange={ageChangeHandler} />
             </div>
 
             <button type="submit">Login</button>
