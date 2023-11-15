@@ -5,33 +5,48 @@ const FORM_KEYS = {
     password : 'password',
     age : 'age',
 }
+const FORM_DATA = {
+    username : '',
+    password : '',
+    age : '',
+}
 export default function ControlledForm(){
+    const [formValues,setFormValues] = useState(FORM_DATA)
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [age,setAge] = useState('0');
-    const usernameChangeHandler = (event) => {
-        setUsername(event.target.value);
+    const changeHandler = (event) => {
+        setFormValues(state => ({
+            ...state,
+            [event.target.name] : event.target.value,
+        }))
     }
+    // const usernameChangeHandler = (event) => {
+    //     setUsername(event.target.value);
+    // }
 
     const resetFormHandler = () => {
-        setUsername('');
-        setPassword('');
-        setAge('');
+        // setUsername('');
+        // setPassword('');
+        // setAge('');
+
+        setFormValues(
+        {['username'] : ''
+        ,['password'] : ''
+        ,['age'] : ''});
     }
 
-    const passwordChangeHandler = (event) => {
-        setPassword(event.target.value);
-    }
+    // const passwordChangeHandler = (event) => {
+    //     setPassword(event.target.value);
+    // }
 
-    const ageChangeHandler = (event) => {
-        setAge(Number(event.target.value));
-    }
+    // const ageChangeHandler = (event) => {
+    //     setAge(Number(event.target.value));
+    // }
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(username);
-        console.log(password);
-        console.log(age);
+        console.log(formValues);
         resetFormHandler();
     }
 
@@ -40,16 +55,16 @@ export default function ControlledForm(){
         <form onSubmit={submitHandler} method="POST">
             <div>
                 <label htmlFor="username">Username:</label>
-                <input type="text" name={FORM_KEYS.username} id={FORM_KEYS.username} value={username} onChange={usernameChangeHandler}/>
+                <input type="text" name={FORM_KEYS.username} id={FORM_KEYS.username} value={formValues.username} onChange={changeHandler}/>
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
-                <input type="password" name={FORM_KEYS.password} id={FORM_KEYS.password} value={password} onChange={passwordChangeHandler} />
+                <input type="password" name={FORM_KEYS.password} id={FORM_KEYS.password} value={formValues.password} onChange={changeHandler} />
             </div>
 
             <div>
                 <label htmlFor="age">Age:</label>
-                <input type="number" name={FORM_KEYS.age} id={FORM_KEYS.age} value={age} onChange={ageChangeHandler} />
+                <input type="number" name={FORM_KEYS.age} id={FORM_KEYS.age} value={formValues.age} onChange={changeHandler} />
             </div>
 
             <button type="submit">Login</button>
