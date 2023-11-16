@@ -114,7 +114,7 @@ export default function ControlledForm(){
                 <input type="checkbox" name="running" id="running" checked={formValues['running']} onChange={onCheckBoxChange}/>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit" disabled={ageError}>Login</button>
         </form>
         <button onClick={resetFormHandler}>Reset</button>
         </>
