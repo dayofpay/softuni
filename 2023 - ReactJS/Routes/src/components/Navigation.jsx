@@ -7,6 +7,7 @@ export default function Navigation(){
         <h1>Navigation</h1>
         <Link to='/'>Home</Link>
         <Link to='/about'>About</Link>
+        <Link to='/swapi'>Swapi</Link>
     </>
     )
 }
