@@ -14,7 +14,9 @@ export default function Swapi(){
          })
     },[])
 
-
+    while(!characters.length){
+        return <div style={{color:'red', fontSize:'55px'}}>Loading, please wait ;) ...</div>
+    }
     return(
         <ul>
             {characters.map(character => <li key={character.name}>{character.name}</li>)}
