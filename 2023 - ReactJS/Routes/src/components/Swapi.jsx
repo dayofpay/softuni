@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Character from "./Character";
 
 export default function Swapi(){
     let api_url = "https://swapi.dev/api"
@@ -25,9 +26,11 @@ export default function Swapi(){
         return <div style={{color:'red'}}>Error while trying to fetch data from the API</div>
     }
     return(
-        <ul>
-            {characters.map(character => <li key={character.name}>{character.name}</li>)}
-
-        </ul>
+        
+<>
+            {characters.map(character => 
+                    <Character key={character.name} {...character}/>
+            )}
+ </>
     )
 }
