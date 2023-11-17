@@ -21,6 +21,9 @@ export default function Navigation(){
         <li className="nav-item">
             <Link to='/swapi' className="nav-link" aria-current="page">Swapi</Link>
         </li>
+        <li className="nav-item">
+            <Link to='/pricing' className="nav-link" aria-current="page">Pricing</Link>
+        </li>
       </ul>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
