@@ -16,10 +16,10 @@ export default function Navigation(){
             <Link to='/' className="nav-link active" aria-current="page">Home</Link>
         </li>
         <li className="nav-item">
-        <Link to='/about' className="nav-link" aria-current="page">About</Link>
+            <Link to='/about' className="nav-link" aria-current="page">About</Link>
         </li>
         <li className="nav-item">
-        <Link to='/swapi' className="nav-link" aria-current="page">Swapi</Link>
+            <Link to='/swapi' className="nav-link" aria-current="page">Swapi</Link>
         </li>
       </ul>
       <form className="d-flex" role="search">
