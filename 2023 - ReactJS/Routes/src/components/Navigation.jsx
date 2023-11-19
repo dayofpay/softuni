@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 
 export default function Navigation(){
@@ -12,7 +12,7 @@ export default function Navigation(){
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
+        {/* <li className="nav-item">
             <Link to='/' className="nav-link active" aria-current="page">Home</Link>
         </li>
         <li className="nav-item">
@@ -23,6 +23,19 @@ export default function Navigation(){
         </li>
         <li className="nav-item">
             <Link to='/pricing' className="nav-link" aria-current="page">Pricing</Link>
+        </li> */}
+
+<li className="nav-item">
+            <NavLink to='/' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} aria-current="page">Home</NavLink>
+        </li>
+        <li className="nav-item">
+            <NavLink to='/about' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} aria-current="page">About</NavLink>
+        </li>
+        <li className="nav-item">
+            <NavLink to='/swapi' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} aria-current="page">Swapi</NavLink>
+        </li>
+        <li className="nav-item">
+            <NavLink to='/pricing' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'} aria-current="page">Pricing</NavLink>
         </li>
       </ul>
       <form className="d-flex" role="search">
