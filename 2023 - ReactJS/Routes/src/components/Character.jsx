@@ -8,7 +8,7 @@ export default function Character({name,height,eye_color,hair_color,skin_color,h
     <p className="card-text">Eye Color: {eye_color}</p>
     <p className="card-text">Hair Color: {hair_color}</p>
     <p className="card-text">Skin Color: {skin_color}</p>
-    <a href={homeworld} className="btn btn-primary">Home world</a>
+    <a href={'/character/' + name} className="btn btn-primary">Home world</a>
   </div>
 </div>
     )
