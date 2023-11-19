@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Swapi from './components/Swapi';
 import Pricing from './components/Pricing';
 import Details from './components/Details';
+import Error404 from './components/Errors/404';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route path='/swapi' element={<Swapi />}>SWAPI</Route>
       <Route path='/pricing' element={<Pricing />}>Pricing</Route>
       <Route path='/character/:name' element={<Details />}>Details</Route>
+      <Route path='*' element={<Error404 />}></Route>
     </Routes>
     </>
   )
