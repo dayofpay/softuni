@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons CSS</title>
+    <style>
+        @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+        html{
+            font: 16px/1.5 'Lucida Sans','Lucida Sans Regular';
+            background-color: cornsilk;
+        }
+        .button{
+            cursor: pointer;
+            outline: none;
+            display: inline-block;
+            border: 2px solid rgb(51, 51, 51);
+            padding: 0.5em 0.9em;
+            margin:0;
+            border-radius: 2em;
+            background-color: rgb(251,251,251);
+            color: black;
+        }
+
+
+        body,button,input{
+            font:inherit
+        }
+        .button.fill{
+            background: rgb(51,51,51);
+            color: rgb(251, 251, 251);
+        }
+        .button.icon i{
+            margin-right: 0.5em;
+        }
+        .button:hover{
+            background: rgb(0,102,0);
+            border-color: rgb(0,102,0);
+            color: rgb(251,251,251);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Normal Buttons</h2>
+    <a class="button">Learn More</a>
+    <button class="button">Learn More</button>
+    <button class="button hover">Learn More</button>
+
+
+    <h2>Filled Buttons</h2>
+    <a class="button fill">Learn More</a>
+    <button class="button fill">Learn More</button>
+    <button class="button fill hover">Learn More</button>
+
+
+    <h2>Icon Buttons</h2>
+    <a class="button fill icon"><i class="fa fa-download"></i>Download</a>
+    <button class="button icon fill"><i class="fa fa-download"></i>Download</button>
+    <button class="button icon fill hover"><i class="fa fa-download"></i>Download</button>
+</body>
+
+</html>
