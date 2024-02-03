@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                @import url('https://use.fontawesome.com/releases/v6.5.1/css/all.css');
+
+                body{
+                    font-family: proxima-nova,'Helvetica Neue',Helvetica,Arial,sans-serif;
+                }
+
+                nav{
+                    width: 200px;
+                    border: 1px solid #e3e3e3;
+                    font-size: 14px;
+                    line-height: 20px;
+                    background-color: #f5f5f5;
+                }
+                li{
+                    list-style: none;
+                    line-height: 25px;
+                    margin-left: -15px;
+                }
+                a{
+                    text-decoration: none;
+                    color:#c83025;
+                }
+                i{
+                    width: 1.14em;
+                    padding-right: 0.28em;
+                }
+
+                button{
+                    padding: 4px 12px 4px 12px;
+                    line-height: 20px;
+                    color: #ffffff;
+                    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+                    cursor: pointer;
+                }
+
+                button.shopping{
+                    background-color: #83a94c;
+                }
+                button.info{
+                    background-color: #008ed0;
+                }
+                button.delete{
+                    background-color: #cc4036;
+                }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-book"></i>Library</a></li>
+            <li><a href="#"><i class="fas fa-pencil"></i>Applications</a></li>
+            <li><a href="#"><i class="fas fa-gear"></i>Settings</a></li>
+        </ul>
+    </nav>
+
+    <p>
+        <button class="shopping"><i class="fa fa-cart-shopping"></i>Checkout</button>
+        <button class="info"><i class="fa fa-info"></i>Info</button>
+        <button class="delete"><i class="fa fa-trash"></i>Delete</button>
+
+    </p>
+</body>
+</html>
