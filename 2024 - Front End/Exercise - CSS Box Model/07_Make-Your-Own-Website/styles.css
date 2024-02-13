@@ -1,1 +1,26 @@
 /* TODO: style the html */
+
+
+div{
+    width: 280px;
+    display: inline-block;
+    border: 5px solid #0A2C48;
+    background-color: #0A2C48;
+    border-radius: 4px;
+    padding-left: 32px;
+}
+
+div h3{
+    padding-left: 15px;
+    color: white;
+}
+
+div p{
+
+    color: #c9d6ff;
+    font-size: 18px;
+}
+
+div:hover{
+    background-color: #2A4C68;
+}
