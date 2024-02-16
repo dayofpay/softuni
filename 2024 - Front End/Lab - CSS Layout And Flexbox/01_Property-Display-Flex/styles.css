@@ -1,6 +1,7 @@
 .flex-container {
   background-color: DodgerBlue;
   width: 300px;
+  display: flex;
 }
 
 .flex-container > div {
