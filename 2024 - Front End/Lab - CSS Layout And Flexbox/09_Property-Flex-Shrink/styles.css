@@ -3,7 +3,15 @@
   background-color: DodgerBlue;
   width: 350px;
 }
-
+#box1{
+  flex-shrink: 0;
+}
+#box2{
+  flex-shrink: 1;
+}
+#box3{
+  flex-shrink: 2;
+}
 .flex-container > div {
   background-color: #f1f1f1;
   margin: 10px;
