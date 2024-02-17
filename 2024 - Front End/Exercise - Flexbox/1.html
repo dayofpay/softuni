@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #EEE;
+            padding: 2em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+
+        body > *{
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 1em black;
+            border-radius: 0.4em;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        header,footer{
+            flex-basis: 100%;
+        }
+        main{
+            flex: 8 1 40rem;
+            height: 500px;
+        }
+        aside{
+            flex: 2 1 20rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>Header</p>
+    </header>
+
+    <main>
+        <p>Main</p>
+    </main>
+
+    <aside>
+        <p>Aside</p>
+    </aside>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+</body>
+</html>
