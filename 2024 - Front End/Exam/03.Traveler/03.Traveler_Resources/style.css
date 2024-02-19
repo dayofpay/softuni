@@ -1,0 +1,299 @@
+    @import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant&display=swap");
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-size: 18px;
+        letter-spacing: 1.5;
+        box-sizing: inherit;
+        max-width: 100vw;
+        color: #67686b;
+        }
+
+        p {
+        font-size: 16px;
+        }
+
+        li {
+        list-style: none;  
+        }
+
+        header {
+        background: linear-gradient(rgba(8, 7, 7, 0.3), rgb(59, 47, 47)), url(./images/poster.jpg) no-repeat center center;
+        background-size: cover;
+        padding: 2rem 0;
+        }
+
+        header .logo {
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-left: 50px;
+        }
+
+        nav img {
+        width: 5.2em;
+        height: 3.3em;
+        }
+
+        header nav {
+        display: flex;
+        margin-left: 80%;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Karla', serif;
+        }
+
+        header nav ul li {
+        display: inline-block;
+        list-style-type: none;
+        padding-right: 1em;
+        }
+
+        header nav ul li a {
+        color: white;
+        text-decoration: none;
+        }
+
+        .header-title {
+        color: white;
+        margin: 0 auto;
+        text-align: center;
+        padding: 6em 0;
+        }
+
+        .header-title h1 {
+        font-size: 70px;
+        font-family: 'Karla';
+        padding-bottom: 0.5em;
+        }
+
+        .header-title p {
+        padding-top: 50px;
+        font-size: 30px;
+        text-align: center;
+        font-family: 'Cormorant Infant';
+        word-wrap: break-word;
+        }
+
+        .header-title button {
+        padding: 0.7em 0.9em;
+        color: rgb(104, 102, 102);
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        border-radius: 0.3rem;
+        background: rgb(231, 238, 240);
+        margin-top: 2em;
+        }
+
+        h1, h2, h3 {
+        font-size: 24px;
+        }
+
+        .customer-reviews p {
+        font-family: 'Karla';
+        margin-bottom: 20px;
+        margin-right: 800px;
+        }
+
+        .customer-reviews {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: beige;
+        padding: 20px;
+        }
+
+        .customer-reviews .testimotal {
+        text-align: center;
+        font-size: 62px;
+        word-wrap: break-word;
+        max-width: 50%;
+        margin-top: 20px;
+        font-family: 'Cormorant Infant';
+        font-weight: bold;
+        padding-bottom: 100px;
+        }
+
+        .support p {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        }
+
+        .support {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(228, 71, 71);
+        font-family: 'Karla', serif;
+        padding: 100px;
+        }
+
+        .support span {
+        padding-top: 50px;
+        color: rgb(253, 248, 248);
+        font-family: 'Karla';
+        width: 260px;
+        }
+
+        .understand-mind {
+        background-color: beige;
+        }
+
+        .understand-mind .content {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: beige;
+        font-family: 'Cormorant Infant', serif;
+        padding: 20px;
+        width: 50%;
+        }
+
+        .understand-mind .content img {
+        height: 300px;
+        max-width: 100%;
+        margin-bottom: 10px;
+        padding-top: 30px;
+        }
+
+        .understand-mind .content h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+        margin-top: 50px;
+        width: 300px;
+
+        word-wrap: break-word;
+        }
+
+        .understand-mind .content p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-family: 'Karla';
+
+        padding-bottom: 50px;
+        margin-top: 50px;
+        width: 400px;
+        word-wrap: break-word;
+        }
+
+        .understand-mind .content .button:nth-of-type(1) {
+            font-size: 14px;
+            font-family: 'Karla';
+            padding: 7px 20px;
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-left: 200px;
+            align-self:flex-start;
+        }
+        .understand-mind .content .button:nth-of-type(2) {
+        font-size: 14px;
+        font-family: 'Karla';
+        padding: 7px 20px;
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        }
+        
+        .understand-mind .content .button:nth-of-type(2) {
+        margin-top: -20px;
+        }
+        
+        .local-guide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(178, 43, 43);
+        padding: 100px;
+        }
+        
+        .local-guide h1 {
+        margin-top: 50px;
+        font-size: 50px;
+        font-family: 'Cormorant Infant';
+        }
+        
+        .local-guide p {
+        margin-top: 30px;
+        font-size: 16px;
+        font-family: 'Karla';
+        color: white;
+        width: 660px;
+        margin-bottom: 50px;
+        text-align: center;
+        }
+        
+        .button-2 {
+        display: inline-block;
+        padding: 15px 40px;
+        background-color: rgb(243, 204, 106);
+        color: black;
+        text-decoration: none;
+        border-radius: 32px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+        background: #1f2023;
+        text-align: left;
+        padding: 50px 30px;
+        }
+        
+        footer .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin-left: 100px;
+        }
+        
+        footer .logo-image {
+        height: 42px;
+        margin-left: 100px;
+        }
+        
+        footer .text {
+        color: white;
+        font-family: 'Karla', sans-serif;
+        width: 450px;
+        margin-top: 20px;
+        }
+        
+        footer .text p {
+        font-size: 16px;
+        margin: 10px 0;
+        }
+        
+        footer .copy p {
+        color: rgb(89, 70, 70);
+        font-size: 14px;
+        font-family: 'Karla', sans-serif;
+        padding-top: 30px;
+}
